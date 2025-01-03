@@ -136,7 +136,7 @@ test_LGCP <- testAniso(OGv=vecK_LGCP, Vs=vKtileW_LGCP, DSS="K")$p.val
 
 
 sigma_sq_sample <- read.csv("sigma_sq_sample.csv")[,-1]
-sigma_sqs <- sigma_sq_sample[6501:12501]
+sigma_sqs <- sigma_sq_sample[7501:12500]
 quantile(sqrt(sigma_sqs), c(0, 0.025, 0.05, 0.1, 0.25, 0.5, 0.75, 0.9, 0.95, 0.975,1)) # assessing the dependency range
 
 
