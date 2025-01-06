@@ -59,12 +59,6 @@ boot.test_GKF <- function(spatPat, sqrt.n, reps, r.grid, theta.grid,
 
 
   
-
-  omega1 <- omega2 <- 2*pi*Tp/spatPat$xDiff
-  grid <- as.matrix(expand.grid(omega1, omega2))
-  zero <- which(grid[,1]==0 & grid[,2]==0)
-  angles <- atan(expand.grid(Tp,Tp)[,2]/expand.grid(Tp,Tp)[,1])
-  angles[zero] <- NA
   
   for(m in 1:reps){
     
@@ -132,7 +126,7 @@ boot.test_GKF <- function(spatPat, sqrt.n, reps, r.grid, theta.grid,
 }
 
 
-# THIS VERSION OF THE FUNCTION CAN BE USED IF ONE WISHES TO TREY TWO DIFFERENT SEQUENCES OF DISTANCESFOR 2 INTEGRATION RANGES:
+# THIS VERSION OF THE FUNCTION CAN BE USED IF ONE WISHES TO TREY TWO DIFFERENT SEQUENCES OF DISTANCES FOR 2 INTEGRATION RANGES:
 
 boot.test_GKF_2 <- function(spatPat, sqrt.n, reps, r.grid.W, r.grid.L, theta.grid, 
                           prefDir, Gepsilon, Kaspect, Tepsilon, Tp){
@@ -181,13 +175,7 @@ boot.test_GKF_2 <- function(spatPat, sqrt.n, reps, r.grid.W, r.grid.L, theta.gri
   vTtile <- matrix(NA, nrow= length(theta.grid), ncol= reps)
   
   
-  
-  
-  omega1 <- omega2 <- 2*pi*Tp/spatPat$xDiff
-  grid <- as.matrix(expand.grid(omega1, omega2))
-  zero <- which(grid[,1]==0 & grid[,2]==0)
-  angles <- atan(expand.grid(Tp,Tp)[,2]/expand.grid(Tp,Tp)[,1])
-  angles[zero] <- NA
+
   
   for(m in 1:reps){
     # sampling angles and tiles
