@@ -456,7 +456,7 @@ Kaspect <- 0.15
 Tepsilon <- pi*7.5/180
 Tp <- -15:15
 
-sqrt.n <- 5
+sqrt.n <- 4
 
 
 theta.grid <- seq(0, pi, length=37)[-37]
