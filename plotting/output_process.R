@@ -32,10 +32,10 @@ POW_LLS <- cbind(apply(LLS1_p, 1, function(x) {mean(x<=0.05)}),
                  apply(LLS06_p, 1, function(x) {mean(x<=0.05)}),
                  apply(LLS04_p, 1, function(x) {mean(x<=0.05)}))
 
-LTS1 <- read.csv("LGCP\\LGCP_THOMAS_1_SMALL.csv")[,-1]
-LTS08 <- read.csv("LGCP\\LGCP_THOMAS_08_SMALL.csv")[,-1]
-LTS06 <- read.csv("LGCP\\LGCP_THOMAS_06_SMALL.csv")[,-1]
-LTS04 <- read.csv("LGCP\\LGCP_THOMAS_04_SMALL.csv")[,-1]
+LTS1 <- read.csv("LGCP\\LGCP_THOMAS_1_SMALL_long_short.csv")[,-1]
+LTS08 <- read.csv("LGCP\\LGCP_THOMAS_08_SMALL_long_short.csv")[,-1]
+LTS06 <- read.csv("LGCP\\LGCP_THOMAS_06_SMALL_long_short.csv")[,-1]
+LTS04 <- read.csv("LGCP\\LGCP_THOMAS_04_SMALL_long_short.csv")[,-1]
 
 LTS1_p <- rbind(apply(LTS1[2:1002,], 2, pval),
                 apply(LTS1[2006:3006,], 2, pval),
@@ -191,10 +191,10 @@ POW_LLB <- cbind(apply(LLB1_p, 1, function(x) {mean(x<=0.05)}),
                  apply(LLB04_p, 1, function(x) {mean(x<=0.05)}))
 
 
-LTB1 <- read.csv("LGCP\\LGCP_THOMAS_1_BIG.csv")[,-1]
-LTB08 <- read.csv("LGCP\\LGCP_THOMAS_08_BIG.csv")[,-1]
-LTB06 <- read.csv("LGCP\\LGCP_THOMAS_06_BIG.csv")[,-1]
-LTB04 <- read.csv("LGCP\\LGCP_THOMAS_04_BIG.csv")[,-1]
+LTB1 <- read.csv("LGCP\\LGCP_THOMAS_1_BIG_long_short.csv")[,-1]
+LTB08 <- read.csv("LGCP\\LGCP_THOMAS_08_BIG_long_short.csv")[,-1]
+LTB06 <- read.csv("LGCP\\LGCP_THOMAS_06_BIG_long_short.csv")[,-1]
+LTB04 <- read.csv("LGCP\\LGCP_THOMAS_04_BIG_long_short.csv")[,-1]
 
 LTB1_p <- rbind(apply(LTB1[2:1002,], 2, pval),
                 apply(LTB1[2006:3006,], 2, pval),
@@ -750,10 +750,10 @@ PPS08 <- read.csv("PLCP\\PLCP_PLCP_08_SMALL.csv")[,-1]
 PPS06 <- read.csv("PLCP\\PLCP_PLCP_06_SMALL.csv")[,-1]
 PPS04 <- read.csv("PLCP\\PLCP_PLCP_04_SMALL.csv")[,-1]
 
-PTS1 <- read.csv("PLCP\\PLCP_THOMAS_1_SMALL.csv")[,-1]
-PTS08 <- read.csv("PLCP\\PLCP_THOMAS_08_SMALL.csv")[,-1]
-PTS06 <- read.csv("PLCP\\PLCP_THOMAS_06_SMALL.csv")[,-1]
-PTS04 <- read.csv("PLCP\\PLCP_THOMAS_04_SMALL.csv")[,-1]
+PTS1 <- read.csv("PLCP\\PLCP_THOMAS_1_SMALL_long_short.csv")[,-1]
+PTS08 <- read.csv("PLCP\\PLCP_THOMAS_08_SMALL_long_short.csv")[,-1]
+PTS06 <- read.csv("PLCP\\PLCP_THOMAS_06_SMALL_long_short.csv")[,-1]
+PTS04 <- read.csv("PLCP\\PLCP_THOMAS_04_SMALL_long_short.csv")[,-1]
 
 PSS1 <- read.csv("PLCP\\PLCP_SR_1_SMALL.csv")[,-1]
 PSS08 <- read.csv("PLCP\\PLCP_SR_08_SMALL.csv")[,-1]
@@ -790,10 +790,10 @@ PPB08 <- read.csv("PLCP\\PLCP_PLCP_08_BIG.csv")[,-1]
 PPB06 <- read.csv("PLCP\\PLCP_PLCP_06_BIG.csv")[,-1]
 PPB04 <- read.csv("PLCP\\PLCP_PLCP_04_BIG.csv")[,-1]
 
-PTB1 <- read.csv("PLCP\\PLCP_THOMAS_1_BIG.csv")[,-1]
-PTB08 <- read.csv("PLCP\\PLCP_THOMAS_08_BIG.csv")[,-1]
-PTB06 <- read.csv("PLCP\\PLCP_THOMAS_06_BIG.csv")[,-1]
-PTB04 <- read.csv("PLCP\\PLCP_THOMAS_04_BIG.csv")[,-1]
+PTB1 <- read.csv("PLCP\\PLCP_THOMAS_1_BIG_long_short.csv")[,-1]
+PTB08 <- read.csv("PLCP\\PLCP_THOMAS_08_BIG_long_short.csv")[,-1]
+PTB06 <- read.csv("PLCP\\PLCP_THOMAS_06_BIG_long_short.csv")[,-1]
+PTB04 <- read.csv("PLCP\\PLCP_THOMAS_04_BIG_long_short.csv")[,-1]
 
 PSB1 <- read.csv("PLCP\\PLCP_SR_1_BIG.csv")[,-1]
 PSB08 <- read.csv("PLCP\\PLCP_SR_08_BIG.csv")[,-1]
