@@ -323,40 +323,117 @@ violet <- function(alpha=255) rgb(238, 130, 238, max = 255, alpha = alpha)
 var=3
 mu=log(400)-var/2
 
-set.seed(645) #22
-LGCP <- rAnisotrop(theta=pi/6, 0.6, process=rLGCPtransformed, 
+set.seed(476) #22
+LGCP1 <- rAnisotrop(theta=pi/6, 1, process=rLGCPtransformed, 
                    xdim=c(0,1), ydim=c(0,1), model="exponential", mu=mu, var=var, scale=0.02)
-plotSpatPat(LGCP)
+set.seed(134) #22
+LGCP08 <- rAnisotrop(theta=pi/6, 0.8, process=rLGCPtransformed, 
+                   xdim=c(0,1), ydim=c(0,1), model="exponential", mu=mu, var=var, scale=0.02)
+set.seed(645) #22
+LGCP06 <- rAnisotrop(theta=pi/6, 0.6, process=rLGCPtransformed, 
+                   xdim=c(0,1), ydim=c(0,1), model="exponential", mu=mu, var=var, scale=0.02)
+set.seed(936) #22
+LGCP04 <- rAnisotrop(theta=pi/6, 0.4, process=rLGCPtransformed, 
+                    xdim=c(0,1), ydim=c(0,1), model="exponential", mu=mu, var=var, scale=0.02)
 
-patterns <- read.csv("IsotropyTesting\\GIBBS\\Gibbs06_big_2.csv", header=TRUE)[,-1]
+patterns <- read.csv("C:\\Users\\jjp22\\OneDrive - Imperial College London\\Desktop\\PhD\\Anisotropy testing in SPP\\submission_edits\\Gibbs1_big_2.csv", header=TRUE)[,-1]
 ixs <- which(patterns[,1]=="pattern")
-l=18 #18  #845
+l=87 #18  #845
 ix <- ixs[l:(l+1)]
 window <- simWind(c(-0.5,0.5), c(-0.5,0.5))
 np1 <- patterns[(ix[1]+1):(ix[2]-1),]
 np1 <- cbind(as.numeric(np1[,1]), as.numeric(np1[,2]))
 np <- np1[np1[,1]>(-0.5) & np1[,1]<(0.5) & np1[,2]>(-0.5) & np1[,2]<(0.5),]
-GIBBS <- list(pattern = np, winBor=window[[2]],
+GIBBS1 <- list(pattern = np, winBor=window[[2]],
               lim=window[[3]], xDiff=window$xDiff, yDiff=window$yDiff)
-plotSpatPat(GIBBS)
+patterns <- read.csv("C:\\Users\\jjp22\\OneDrive - Imperial College London\\Desktop\\PhD\\Anisotropy testing in SPP\\submission_edits\\Gibbs08_big_2.csv", header=TRUE)[,-1]
+ixs <- which(patterns[,1]=="pattern")
+l=745 #18  #845
+ix <- ixs[l:(l+1)]
+np1 <- patterns[(ix[1]+1):(ix[2]-1),]
+np1 <- cbind(as.numeric(np1[,1]), as.numeric(np1[,2]))
+np <- np1[np1[,1]>(-0.5) & np1[,1]<(0.5) & np1[,2]>(-0.5) & np1[,2]<(0.5),]
+GIBBS08 <- list(pattern = np, winBor=window[[2]],
+              lim=window[[3]], xDiff=window$xDiff, yDiff=window$yDiff)
+patterns <- read.csv("C:\\Users\\jjp22\\OneDrive - Imperial College London\\Desktop\\PhD\\Anisotropy testing in SPP\\submission_edits\\Gibbs06_big_2.csv", header=TRUE)[,-1]
+l=18 #18  #845
+ix <- ixs[l:(l+1)]
+np1 <- patterns[(ix[1]+1):(ix[2]-1),]
+np1 <- cbind(as.numeric(np1[,1]), as.numeric(np1[,2]))
+np <- np1[np1[,1]>(-0.5) & np1[,1]<(0.5) & np1[,2]>(-0.5) & np1[,2]<(0.5),]
+GIBBS06 <- list(pattern = np, winBor=window[[2]],
+              lim=window[[3]], xDiff=window$xDiff, yDiff=window$yDiff)
+patterns <- read.csv("C:\\Users\\jjp22\\OneDrive - Imperial College London\\Desktop\\PhD\\Anisotropy testing in SPP\\submission_edits\\Gibbs04_big_2.csv", header=TRUE)[,-1]
+ixs <- which(patterns[,1]=="pattern")
+l=651 #18  #845
+ix <- ixs[l:(l+1)]
+np1 <- patterns[(ix[1]+1):(ix[2]-1),]
+np1 <- cbind(as.numeric(np1[,1]), as.numeric(np1[,2]))
+np <- np1[np1[,1]>(-0.5) & np1[,1]<(0.5) & np1[,2]>(-0.5) & np1[,2]<(0.5),]
+GIBBS04 <- list(pattern = np, winBor=window[[2]],
+               lim=window[[3]], xDiff=window$xDiff, yDiff=window$yDiff)
 
-
+set.seed(554)   #78
+PLCP1 <- rDirLine(lineIntensity=16, alongIntensity=25, theta=pi/6, xdim=c(-0.5,0.5), ydim=c(-0.5,0.5), sigma=0.015, kappa=KofA(1))
+set.seed(76)   #78
+PLCP08 <- rDirLine(lineIntensity=16, alongIntensity=25, theta=pi/6, xdim=c(-0.5,0.5), ydim=c(-0.5,0.5), sigma=0.015, kappa=KofA(0.8))
 set.seed(786)   #78
-PLCP <- rDirLine(lineIntensity=16, alongIntensity=25, theta=pi/6, xdim=c(-0.5,0.5), ydim=c(-0.5,0.5), sigma=0.015, kappa=KofA(0.6))
+PLCP06 <- rDirLine(lineIntensity=16, alongIntensity=25, theta=pi/6, xdim=c(-0.5,0.5), ydim=c(-0.5,0.5), sigma=0.015, kappa=KofA(0.6))
+set.seed(98)   #78
+PLCP04 <- rDirLine(lineIntensity=16, alongIntensity=25, theta=pi/6, xdim=c(-0.5,0.5), ydim=c(-0.5,0.5), sigma=0.015, kappa=KofA(0.4))
 
 
-par(mfrow=c(1,3), mar=c(1,1,1,1))
-plotSpatPat(LGCP, cex = 0.75)
-plotSpatPat(GIBBS, cex = 0.75)
-plotSpatPat(PLCP, cex = 0.75)
 
+{
+  where=-2
+  layout(matrix(1:20, ncol=5, byrow=TRUE), widths=c(0.5, 5,5,5,5), heights=c(5,5,5,0.5))
+  par(mar=c(0,0,0,0))
+  plot.new()
+  title(ylab=TeX("LGCP"), line=where, cex.lab=2.5)
+  par(mar=c(1,1,1,1))
+  
+  plotSpatPat(LGCP1, cex=0.75)
+  plotSpatPat(LGCP08, cex=0.75)
+  plotSpatPat(LGCP06, cex=0.75)
+  plotSpatPat(LGCP04, cex=0.75)
+  par(mar=c(0,0,0,0))
+  plot.new()
+  title(ylab=TeX("Gibbs"), line=where, cex.lab=2.5)
+  par(mar=c(1,1,1,1))
+  
+  plotSpatPat(GIBBS1, cex=0.75)
+  plotSpatPat(GIBBS08, cex=0.75)
+  plotSpatPat(GIBBS06, cex=0.75)
+  plotSpatPat(GIBBS04, cex=0.75)
+  par(mar=c(0,0,0,0))
+  plot.new()
+  title(ylab=TeX("PLCP"), line=where, cex.lab=2.5)
+  par(mar=c(1,1,1,1))
+  
+  plotSpatPat(PLCP1, cex=0.75)
+  plotSpatPat(PLCP08, cex=0.75)
+  plotSpatPat(PLCP06, cex=0.75)
+  plotSpatPat(PLCP04, cex=0.75)
+  plot.new()
+  where=-0.5
+  plot.new()
+  title(xlab=TeX("a=1"), line=where, cex.lab=2.5)
+  plot.new()
+  title(xlab=TeX("a=0.8"), line=where, cex.lab=2.5)
+  plot.new()
+  
+  title(xlab=TeX("a=0.6"), line=where, cex.lab=2.5)
+  plot.new()
+  
+  title(xlab=TeX("a=0.4"), line=where, cex.lab=2.5)
+}
 }
 
 
 # TILING PLOT
 {
   
-  cols <- c(black, violet, orange, teal)
+  cols <- c(black, magenta, orange, teal)
   
   var=3
   scale= 0.03
@@ -373,15 +450,15 @@ plotSpatPat(PLCP, cex = 0.75)
   y.centres <- c(r, 1-r, r, 1-r)
   
   
-  for(i in 1:4){
-    xs <- seq(x.centres[i]-r, x.centres[i]+r, length=100)
-    vrtx <- sqrt(ifelse(r^2-(xs-x.centres[i])^2>0,r^2-(xs-x.centres[i])^2, 0 ))+y.centres[i]
-    vrtx <- c(vrtx[100:1], -sqrt(ifelse(r^2-(xs-x.centres[i])^2>0,r^2-(xs-x.centres[i])^2,0)) +y.centres[i])
-    polygon(c(xs[100:1], xs), vrtx)
-  }
+  # for(i in 1:4){
+  #   xs <- seq(x.centres[i]-r, x.centres[i]+r, length=100)
+  #   vrtx <- sqrt(ifelse(r^2-(xs-x.centres[i])^2>0,r^2-(xs-x.centres[i])^2, 0 ))+y.centres[i]
+  #   vrtx <- c(vrtx[100:1], -sqrt(ifelse(r^2-(xs-x.centres[i])^2>0,r^2-(xs-x.centres[i])^2,0)) +y.centres[i])
+  #   polygon(c(xs[100:1], xs), vrtx)
+  # }
   
   sqr <-  matrix(c(-1/4, 1/4, 1/4, -1/4, -1/4, -1/4, 1/4, 1/4), ncol=2, byrow=TRUE)
-  set.seed(66)
+  set.seed(123)
   angles <- runif(4, 0, 2*pi)
   set.seed(12)
   tiles <- sample(1:4, 4, replace=TRUE)
@@ -393,46 +470,137 @@ plotSpatPat(PLCP, cex = 0.75)
   
   
   
+  par(mfrow=c(2,3), mar=c(3,1,1,1))
   
-  par(mfrow=c(1,2), mar=c(1,1,1,1))
-  plotSpatPat(example, cex=0.5)
-  for(i in 1:4){
-    xs <- seq(x.centres[i]-r, x.centres[i]+r, length=100)
-    vrtx <- sqrt(ifelse(r^2-(xs-x.centres[i])^2>0,r^2-(xs-x.centres[i])^2, 0 ))+y.centres[i]
-    vrtx <- c(vrtx[100:1], -sqrt(ifelse(r^2-(xs-x.centres[i])^2>0,r^2-(xs-x.centres[i])^2,0)) +y.centres[i])
-    polygon(c(xs[100:1], xs), vrtx, lty=2, border="darkgrey")
-    angle <- -angles[i]
-    R <- matrix(c(cos(angle), -sin(angle), sin(angle), cos(angle)),ncol=2, byrow=TRUE)
-    sqvrtx <- R%*%basevrtx
-    colour  <- cols[i][[1]]
-    polygon(sqvrtx[1,]+ x.centres[tiles[i]], sqvrtx[2,]+ y.centres[tiles[i]],
-            col=colour(alpha=50), border = colour(alpha=255))
-  }
-  plotSpatPat(example, type="n")
-  for(i in 1:4){
-    
-    tile <- tiles[i]
-    pat_trans <- cbind(example[[1]][,1]- x.centres[tile], example[[1]][,2]-y.centres[tile])
-    distances <- sqrt(pat_trans[,1]^2+pat_trans[,2]^2)
-    pat_trans_r <- pat_trans[distances <= r,]
-    angle <- angles[i]
-    R <- matrix(c(cos(angle), -sin(angle), sin(angle), cos(angle)),ncol=2, byrow=TRUE)
-    rotated <- t(R%*%t(pat_trans_r))
-    rotSq <- rotated[(rotated[,1] <= 0.25 & rotated[,1] >= -0.25 & 
-                        rotated[,2] <= 0.25 & rotated[,2] >= -0.25),]  
-    rotated_trans <- cbind(rotSq[,1]+x.tileCen[i], rotSq[,2]+y.tileCen[i])
-    colour  <- cols[i][[1]]
-    points(rotated_trans, cex=0.5)#, col=colour(alpha=255), cex=0.5)
-    
-  }
-  polygon(c(0, 0.5, 0.5, 0), c(0.5, 0.5, 1, 1),
-          col=cols[1][[1]](alpha=50), border = cols[1][[1]](alpha=255))
-  polygon(c(0.5, 1, 1, 0.5), c(0.5, 0.5, 1, 1),
-          col=cols[2][[1]](alpha=50), border = cols[2][[1]](alpha=255))
-  polygon(c(0, 0.5, 0.5, 0), c(0, 0, 0.5, 0.5),
-          col=cols[3][[1]](alpha=50), border = cols[3][[1]](alpha=255))
-  polygon(c(0.5, 1, 1, 0.5), c(0, 0, 0.5, 0.5),
-          col=cols[4][[1]](alpha=50), border = cols[4][[1]](alpha=255))
+  plotSpatPat(example, cex=0.75, col=black())
+  points(x.centres, y.centres, pch=4, lwd=3, col=grey())
+  title(xlab=TeX("(a) centres of tiles"), line=0.5, cex.lab=1.25)
+  title(xlab=TeX("on a regular grid"), line=2, cex.lab=1.25)
+  
+  
+  
+  plotSpatPat(example, cex=0.75, col=grey())
+  points(x.centres[4], y.centres[4], pch=4, lwd=3, col=grey())
+  
+  xs <- seq(x.centres[2]-r, x.centres[2]+r, length=100)
+  vrtx <- sqrt(ifelse(r^2-(xs-x.centres[2])^2>0,r^2-(xs-x.centres[2])^2, 0 ))+y.centres[2]
+  vrtx <- c(vrtx[100:1], -sqrt(ifelse(r^2-(xs-x.centres[2])^2>0,r^2-(xs-x.centres[2])^2,0)) +y.centres[2])
+  polygon(c(xs[100:1], xs), vrtx, lty=2, border=magenta())
+  points(x.centres[2], y.centres[2], pch=4, lwd=3, col=magenta())
+  points(x.centres[2], y.centres[2] , pch=4, col=magenta(), lwd=3)
+  points(x.centres[1]+0.005, y.centres[1]+0.005 , pch=4, col=orange(), lwd=3)
+  points(x.centres[1]-0.005, y.centres[1]-0.005 , pch=4, col=black(), lwd=3)
+  points(x.centres[3], y.centres[3] , pch=4, col=teal(), lwd=3)
+  
+  incirc <- (example$pattern[,1]-x.centres[2])^2+(example$pattern[,2]-y.centres[2])^2 <= r^2
+  ins <- cbind(example$pattern[incirc,1], example$pattern[incirc,2])
+  # outs <- list(pattern = cbind(NA, NA), 
+  #               example[[2]], example[[3]], example[[4]], example[[4]])
+  points(ins[,1], ins[,2], cex=0.75)
+  
+  title(xlab=TeX("(b) sampled centres of tiles $t_a^{(j)};$"), line=0.5, cex.lab=1.25)
+  title(xlab=TeX("area within distance $\\sqrt{2}l/2k$ from $t_a^{(1)}$"), line=2, cex.lab=1.25)
+  
+  
+  R <- matrix(c(cos(angles[1]), -sin(angles[1]), sin(angles[1]), cos(angles[1])),ncol=2, byrow=TRUE)
+  
+  plot(NA, NA, frame.plot = FALSE, axes=FALSE,
+       xlim=c(0,1), ylim=c(0,1), 
+       xlab=c(0,1), ylab=c(0,1))
+  xs <- xs - x.centres[2] + 0.5
+  vrtx <- vrtx - y.centres[2] + 0.5 
+  polygon(c(xs[100:1], xs), vrtx, lty=2, border=grey())
+  xang <- seq(r, r*cos(angles[1]), length=200)
+  vrtxang <- sqrt(ifelse(r^2-xang^2>0,r^2-xang^2, 0 ))
+  lines(xang+0.5, vrtxang+0.5, lwd=3, col=magenta())
+  arrow <- rbind(c(r-0.02, r, r+0.02), c(-0.03, 0, -0.03))
+  rot_ar <- R%*%arrow +0.5
+  lines(rot_ar[1, 1:2], rot_ar[2, 1:2], col=magenta(), lwd=3)
+  lines(rot_ar[1, 2:3], rot_ar[2, 2:3], col=magenta(), lwd=3)
+  pat_trans <- cbind(ins[,1]- x.centres[2], ins[,2]-y.centres[2])
+  rotated <- R%*%t(pat_trans)
+  points(t(rotated)+0.5, cex=0.75)
+  title(xlab=TeX("(c) re-centring at the origin$;"), line=0.5, cex.lab=1.25)
+  title(xlab=TeX("rotation by a random angle $\\theta_j$"), line=2, cex.lab=1.25)
+  
+  
+  plot(NA, NA, frame.plot = FALSE, axes=FALSE,
+       xlim=c(0,1), ylim=c(0,1), 
+       xlab=c(0,1), ylab=c(0,1))
+  polygon(c(xs[100:1], xs), vrtx, lty=2, border=grey())
+  points(t(rotated)+0.5, cex=0.75, col=grey())
+  trunc <- t(rotated[,abs(rotated[1,]) <=0.25 & abs(rotated[2,]) <=0.25])
+  points(trunc+0.5, cex=0.75, col=black())
+  polygon(basevrtx[1,]+0.5, basevrtx[2,]+0.5, border=magenta(), 
+          col=magenta(alpha=50), lwd=2)
+  title(xlab=TeX("(d) truncating to a tile size$"), line=0.5, cex.lab=1.25)
+  
+  
+  
+  
+  plot(NA, NA, frame.plot = FALSE, axes=FALSE,
+       xlim=c(0,1), ylim=c(0,1), 
+       xlab=c(0,1), ylab=c(0,1))
+  polygon(x=example$winBor[,1], y=example$winBor[,2], 
+          lty=1, lwd=1, border="darkgrey")
+  points(trunc[,1]+0.25, trunc[,2]+0.75 , cex=0.75, col=black())
+  polygon(basevrtx[1,]+0.25, basevrtx[2,]+0.75, border=magenta(), 
+          col=magenta(alpha=50), lwd=2)
+  points(0.25, 0.75 , pch=3, col=magenta(), lwd=3)
+  points(c(0.25, 0.75, 0.75), c(0.25, 0.25,0.75) , pch=3, col=grey(), lwd=3)
+  title(xlab=TeX("(e) centering at $t_b^{(1)}$; filling the 1st"), line=0.5, cex.lab=1.25)
+  title(xlab=TeX("subregion of a pattern replicate$"), line=2, cex.lab=1.25)
+  
+  
+  
+  plot(NA, NA, frame.plot = FALSE, axes=FALSE,
+       xlim=c(0,1), ylim=c(0,1), 
+       xlab=c(0,1), ylab=c(0,1))
+  polygon(x=example$winBor[,1], y=example$winBor[,2], 
+          lty=1, lwd=1, border="darkgrey")
+  points(trunc[,1]+0.25, trunc[,2]+0.75 , cex=0.75, col=black())
+  polygon(basevrtx[1,]+0.25, basevrtx[2,]+0.75, border=magenta(), 
+          col=magenta(alpha=50), lwd=2)
+  
+  
+  incirc <- (example$pattern[,1]-x.centres[3])^2+(example$pattern[,2]-y.centres[3])^2 <= r^2
+  ins <- cbind(example$pattern[incirc,1], example$pattern[incirc,2])
+  pat_trans <- cbind(ins[,1]- x.centres[3], ins[,2]-y.centres[3])
+  R <- matrix(c(cos(angles[2]), -sin(angles[2]), sin(angles[2]), cos(angles[2])),ncol=2, byrow=TRUE)
+  rotated <- R%*%t(pat_trans)
+  trunc <- t(rotated[,abs(rotated[1,]) <=0.25 & abs(rotated[2,]) <=0.25])
+  points(trunc[,1]+0.25, trunc[,2]+0.25 , cex=0.75, col=black())
+  polygon(basevrtx[1,]+0.25, basevrtx[2,]+0.25, border=teal(), 
+          col=teal(alpha=50), lwd=2)
+  
+  incirc <- (example$pattern[,1]-x.centres[1])^2+(example$pattern[,2]-y.centres[1])^2 <= r^2
+  ins <- cbind(example$pattern[incirc,1], example$pattern[incirc,2])
+  pat_trans <- cbind(ins[,1]- x.centres[1], ins[,2]-y.centres[1])
+  R <- matrix(c(cos(angles[3]), -sin(angles[3]), sin(angles[3]), cos(angles[3])),ncol=2, byrow=TRUE)
+  rotated <- R%*%t(pat_trans)
+  trunc <- t(rotated[,abs(rotated[1,]) <=0.25 & abs(rotated[2,]) <=0.25])
+  points(trunc[,1]+0.75, trunc[,2]+0.25 , cex=0.75, col=black())
+  polygon(basevrtx[1,]+0.75, basevrtx[2,]+0.25, border=orange(), 
+          col=orange(alpha=50), lwd=2)
+  
+  incirc <- (example$pattern[,1]-x.centres[1])^2+(example$pattern[,2]-y.centres[1])^2 <= r^2
+  ins <- cbind(example$pattern[incirc,1], example$pattern[incirc,2])
+  pat_trans <- cbind(ins[,1]- x.centres[1], ins[,2]-y.centres[1])
+  R <- matrix(c(cos(angles[4]), -sin(angles[4]), sin(angles[4]), cos(angles[4])),ncol=2, byrow=TRUE)
+  rotated <- R%*%t(pat_trans)
+  trunc <- t(rotated[,abs(rotated[1,]) <=0.25 & abs(rotated[2,]) <=0.25])
+  points(trunc[,1]+0.75, trunc[,2]+0.75 , cex=0.75, col=black())
+  polygon(basevrtx[1,]+0.75, basevrtx[2,]+0.75, border=black(), 
+          col=black(alpha=50), lwd=2)
+  
+  points(0.25, 0.75 , pch=3, col=magenta(), lwd=3)
+  points(0.25, 0.25 , pch=3, col=teal(), lwd=3)
+  points(0.75, 0.25 , pch=3, col=orange(), lwd=3)
+  points(0.75, 0.75 , pch=3, col=black(), lwd=3)
+  
+  title(xlab=TeX("(f) repeating steps (b)-(e) to fill"), line=0.5, cex.lab=1.25)
+  title(xlab=TeX("the remaining subregions"), line=2, cex.lab=1.25)
+  
   
 }
 
@@ -1015,17 +1183,19 @@ lines <- matrix(data=c(0.6, cos(pi*0.3), sin(pi*0.3), pi*0.3,
 
 {
 set.seed(4894)
-srPLCP <- stchRecH(PLCP, iter=2e4)
-set.seed(484)
-srGIBBS <- stchRecH(GIBBS, iter=2e4)
+srPLCP <- stchRecH(PLCP06, iter=2e4)
+
+set.seed(4226)
+srGIBBS <- stchRecH(spatPat=GIBBS06, iter=2e4)
+
 set.seed(485655)
-srLGCP <- stchRecH(LGCP, iter=2e4)
+srLGCP <- stchRecH(LGCP06, iter=2e4)
 set.seed(134)
-tilePLCP <- singleBoot(PLCP, sqrt.n=6)
+tilePLCP <- singleBoot(PLCP06, sqrt.n=6)
 set.seed(146)
-tileGIBBS <- singleBoot(GIBBS, sqrt.n=6)
+tileGIBBS <- singleBoot(GIBBS06, sqrt.n=6)
 set.seed(4894)
-tileLGCP <- singleBoot(LGCP, sqrt.n=6)
+tileLGCP <- singleBoot(LGCP06, sqrt.n=6)
 
 set.seed(363)
 est_LGCP_LGCP <- infer.LGCP(LGCP, "exponential")
@@ -1058,6 +1228,22 @@ par(mfrow=c(1,1))
 plotSpatPat(PLCP_PLCP, cex=0.75)
 
 
+set.seed(816) #22
+LGCP_oracle <- rAnisotrop(theta=pi/6, 1, process=rLGCPtransformed, 
+                    xdim=c(0,1), ydim=c(0,1), model="exponential", mu=mu, var=var, scale=0.02)
+patterns <- read.csv("C:\\Users\\jjp22\\OneDrive - Imperial College London\\Desktop\\PhD\\Anisotropy testing in SPP\\submission_edits\\Gibbs_oracle_big_2.csv", header=TRUE)[,-1]
+ixs <- which(patterns[,1]=="pattern")
+l=525 #18  #845
+ix <- ixs[l:(l+1)]
+window <- simWind(c(-0.5,0.5), c(-0.5,0.5))
+np1 <- patterns[(ix[1]+1):(ix[2]-1),]
+np1 <- cbind(as.numeric(np1[,1]), as.numeric(np1[,2]))
+np <- np1[np1[,1]>(-0.5) & np1[,1]<(0.5) & np1[,2]>(-0.5) & np1[,2]<(0.5),]
+GIBBS_oracle <- list(pattern = np, winBor=window[[2]],
+               lim=window[[3]], xDiff=window$xDiff, yDiff=window$yDiff)
+
+set.seed(181)   #78
+PLCP_oracle <- rDirLine(lineIntensity=16, alongIntensity=25, theta=pi/6, xdim=c(-0.5,0.5), ydim=c(-0.5,0.5), sigma=0.015, kappa=KofA(1))
 }
 
 
@@ -1065,42 +1251,59 @@ plotSpatPat(PLCP_PLCP, cex=0.75)
 
 {
 where=-2
-layout(matrix(1:16, ncol=4, byrow=TRUE), widths=c(0.55, 5,5,5))
+layout(matrix(1:24, ncol=6, byrow=TRUE), widths=c(0.5, 5,5,5,5,5), heights=c(5,5,5,0.5))
 par(mar=c(0,0,0,0))
 plot.new()
-title(ylab=TeX("MC w/ correct model"), line=where, cex.lab=2)
+title(ylab=TeX("LGCP"), line=where, cex.lab=2.5)
 par(mar=c(1,1,1,1))
 
+plotSpatPat(LGCP_oracle, cex=0.75)
 plotSpatPat(LGCP_LGCP, cex=0.75)
-plot.new()
-plotSpatPat(PLCP_PLCP, cex=0.75)
-
-par(mar=c(0,0,0,0))
-plot.new()
-title(ylab=TeX("MC w/ misspecified model"), line=where, cex.lab=2)
-par(mar=c(1,1,1,1))
-
 plotSpatPat(LGCP_Thomas, cex=0.75)
-plotSpatPat(Gibbs_Strauss, cex=0.75)
-plotSpatPat(PLCP_Thomas, cex=0.75)
-
-par(mar=c(0,0,0,0))
-plot.new()
-title(ylab=TeX("Nonparametric: tiling"), line=where, cex.lab=2)
-par(mar=c(1,1,1,1))
-
 plotSpatPat(tileLGCP, cex=0.75)
-plotSpatPat(tileGIBBS, cex=0.75)
-plotSpatPat(tilePLCP, cex=0.75)
+plotSpatPat(srLGCP, cex=0.75)
+
 
 par(mar=c(0,0,0,0))
 plot.new()
-title(ylab=TeX("Nonparametric: stoch. rec."), line=where+0.4, cex.lab=2)
+title(ylab=TeX("Gibbs"), line=where, cex.lab=2.5)
 par(mar=c(1,1,1,1))
 
-plotSpatPat(srLGCP, cex=0.75)
+plotSpatPat(GIBBS_oracle, cex=0.75)
+plot.new()
+plotSpatPat(Gibbs_Strauss, cex=0.75)
+plotSpatPat(tileGIBBS, cex=0.75)
 plotSpatPat(srGIBBS, cex=0.75)
+
+par(mar=c(0,0,0,0))
+plot.new()
+title(ylab=TeX("PLCP"), line=where, cex.lab=2.5)
+par(mar=c(1,1,1,1))
+
+plotSpatPat(PLCP_oracle, cex=0.75)
+plotSpatPat(PLCP_PLCP, cex=0.75)
+plotSpatPat(PLCP_Thomas, cex=0.75)
+plotSpatPat(tilePLCP, cex=0.75)
 plotSpatPat(srPLCP, cex=0.75)
+
+where=-0.1
+plot.new()
+plot.new()
+title(xlab=TeX("Param. oracle"), line=where-0.4, cex.lab=2.5)
+
+plot.new()
+title(xlab=TeX("Param. correct model"), line=where-0.4, cex.lab=2.5)
+
+plot.new()
+title(xlab=TeX("Param. misspec. model"), line=where, cex.lab=2.5)
+
+plot.new()
+title(xlab=TeX("Nonparam. tiling"), line=where, cex.lab=2.5)
+
+
+plot.new()
+title(xlab=TeX("Nonparam. stoch. rec."), line=where, cex.lab=2.5)
+
 
 }
 
@@ -1135,7 +1338,6 @@ my_shape1 <- list(x = c(cos(18/180*pi), cos(54/180*pi)/3, cos(pi/2), cos(126/180
 
 
 
-
 # LGCP
 
 LGCP_B <- read.csv("POW_LB.csv")
@@ -1145,7 +1347,7 @@ POW_LLS <- LGCP_S[4:6,-1]
 POW_LTS <- LGCP_S[7:9,-1]
 POW_LT2S <- LGCP_S[10:12,-1]
 POW_LT3S <- LGCP_S[13:15,-1]
-POW_LT4S <- LGCP_S[10:18,-1]
+POW_LT4S <- LGCP_S[16:18,-1]
 POW_LT5S <- LGCP_S[19:21,-1]
 POW_LSS <- LGCP_S[22:24,-1]
 
@@ -1157,6 +1359,27 @@ POW_LT5B <- LGCP_B[13:15,-1]
 POW_LT6B <- LGCP_B[16:18,-1]
 POW_LT8B <- LGCP_B[19:21,-1]
 POW_LSB <- LGCP_B[22:24,-1]
+
+
+LGCP_B_short <- read.csv("POW_LB_short.csv")
+LGCP_S_short <- read.csv("POW_LS_short.csv")
+POW_LOS_short <- LGCP_S_short[1:2,-1]
+POW_LLS_short <- LGCP_S_short[3:4,-1]
+POW_LTS_short <- LGCP_S_short[5:6,-1]
+POW_LT2S_short <- LGCP_S_short[7:8,-1]
+POW_LT3S_short <- LGCP_S_short[9:10,-1]
+POW_LT4S_short <- LGCP_S_short[11:12,-1]
+POW_LT5S_short <- LGCP_S_short[13:14,-1]
+POW_LSS_short <- LGCP_S_short[15:16,-1]
+
+POW_LOB_short <- LGCP_B_short[1:2,-1]
+POW_LLB_short <- LGCP_B_short[3:4,-1]
+POW_LTB_short <- LGCP_B_short[5:6,-1]
+POW_LT4B_short <- LGCP_B_short[7:8,-1]
+POW_LT5B_short <- LGCP_B_short[9:10,-1]
+POW_LT6B_short <- LGCP_B_short[11:12,-1]
+POW_LT8B_short <- LGCP_B_short[13:14,-1]
+POW_LSB_short <- LGCP_B_short[15:16,-1]
 
 
 
@@ -1183,9 +1406,9 @@ POW_LSB <- LGCP_B[22:24,-1]
   points_custom(POW_LOS[1,], 3:0, shape=my_shape1, col=black(255), cex=1.5)
   points(POW_LLS[1,], 3:0+0.09, pch=16, col=orange(255), cex=1.5)
   points(POW_LTS[1,], 3:0+0.03, pch=16, col=magenta(255), cex=1.5)
-  # points(POW_LT2S[1,], 3:0, pch=16, col=blue(255), cex=1.5)
+  # points(POW_LT2S[1,], 3:0, pch=16, col="green", cex=1.5)
   # points(POW_LT3S[1,], 3:0, pch=16, col=cyan(255), cex=1.5)
-  # points(POW_LT4S[1,], 3:0, pch=16, col=teal(255), cex=1.5)
+  # points(POW_LT4S[1,], 3:0, pch=16, col="purple", cex=1.5)
   points(POW_LT5S[1,], 3:0-0.03, pch=16, col=teal(), cex=1.5) # BEST
   points(POW_LSS[1,], 3:0-0.09, pch=16, col=grey(255), cex=1.5)
   
@@ -1311,8 +1534,8 @@ POW_LSB <- LGCP_B[22:24,-1]
   points(POW_LTB[3,], 3:0+0.03, pch=16, col=magenta(255), cex=1.5)
   # points(POW_LT4B[3,], 3:0, pch=16, col=blue(255), cex=1.5)
   # points(POW_LT5B[3,], 3:0, pch=16, col=cyan(255), cex=1.5)
-  # points(POW_LT6B[3,], 3:0, pch=16, col=teal(255), cex=1.5)
-  points(POW_LT8B[3,], 3:0-0.03, pch=16, col=teal(), cex=1.5) # BEST
+  points(POW_LT6B[3,], 3:0, pch=16, col=teal(255), cex=1.5)
+  # points(POW_LT8B[3,], 3:0-0.03, pch=16, col=teal(), cex=1.5) 
   points(POW_LSB[3,], 3:0-0.09, pch=16, col=grey(255), cex=1.5)
   
   
@@ -1331,25 +1554,154 @@ POW_LSB <- LGCP_B[22:24,-1]
   par(mar=c(0,2.25,0,1))
   plot.new()
   
-  l = 0.12
-  legend(x=-0.03+l, y=1, c("Oracle",  "MC w/ LGCP", "MC w/ Thomas", "Tiling", "Stoch. rec."), pch=c(NA, 16,16,16,16), pt.cex=1.5, 
+  l = 0.18
+  legend(x=-0.03+l, y=1, c("Oracle",  "LGCP", "Thomas", "Tiling", "Stoch. rec."), pch=c(NA, 16,16,16,16), pt.cex=1.5, 
          col=c(NA, orange(255),  magenta(255), teal(255), grey(255)), ncol=5, cex=1.5)
-  points_custom(-0.011+l, 0.66, shape=my_shape1, col=black(255), cex=1.5)
+  points_custom(-0.011+l, 0.55, shape=my_shape1, col=black(255), cex=1.5)
   
 }
 
 
+{
+  # layout(matrix(c(1,2,3,4,5,6), ncol=1, byrow=FALSE), heights=c(3,3,3,3,3, 2))
+  layout(matrix(c(1:10, 10, 10), ncol=3, byrow=TRUE), heights=c(5,5,1,1), widths = c(1, 7,7))
+  par(mar=c(1,2.25,1.5,1))
+  
+  
+  par(mar=c(1,2.25,1.5,1))
+  plot.new()
+  title(ylab=TeX("$G_{loc,\\alpha, \\epsilon}$"), line=0.6, cex.lab=1.4)
+  title(ylab="Anisotropy a", line=-0.7, cex.lab=1.25)
+  
+  
+  
+  plot(c(0,1), c(-0.25,3.25), type="n", yaxt="n", xaxt="n", frame=FALSE, xlab="", ylab="", main="")
+  lines(c(0.05,0.05), c(-0.25,3.25), col="grey", lty=1, lwd=2)
+  lines(c(0.2,0.2), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.4,0.4), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.6,0.6), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.8,0.8), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(1,1), c(-0.25,3.25), col="grey", lty=2)
+  points_custom(POW_LOS_short[1,], 3:0, shape=my_shape1, col=black(255), cex=1.5)
+  points(POW_LLS_short[1,], 3:0+0.09, pch=16, col=orange(255), cex=1.5)
+  points(POW_LTS_short[1,], 3:0+0.03, pch=16, col=magenta(255), cex=1.5)
+  # points(POW_LT2S_short[1,], 3:0, pch=16, col="blue", cex=1.5)
+  # points(POW_LT3S_short[1,], 3:0, pch=16, col="green", cex=1.5)
+  # points(POW_LT4S_short[1,], 3:0, pch=16, col="purple", cex=1.5)
+  points(POW_LT5S_short[1,], 3:0-0.03, pch=16, col=teal(), cex=1.5) # BEST
+  points(POW_LSS_short[1,], 3:0-0.09, pch=16, col=grey(255), cex=1.5)
+  
+  
+  # title(ylab="Anisotropy a", line=1.25, cex.lab=1.1)
+  title(main =TeX("$W=[-0.25, 0.25]^2$"), line=0.5, cex.main=1.5)
+  axis(2, at=c(3,2,1,0), labels=c("1", "0.8", "0.6", "0.4"),
+       pos=-0.03, las=2)
+  axis(1, at=c(0,0.05,0.2,0.4,0.6,0.8,1), labels=c("0", TeX("$\\alpha^{(T)}$"), "0.2", "0.4", "0.6", "0.8", "1"))
+  
+  plot(c(0,1), c(-0.25,3.25), type="n", yaxt="n", xaxt="n", frame=FALSE, xlab="", ylab="", main="")
+  lines(c(0.05,0.05), c(-0.25,3.25), col="grey", lty=1, lwd=2)
+  lines(c(0.2,0.2), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.4,0.4), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.6,0.6), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.8,0.8), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(1,1), c(-0.25,3.25), col="grey", lty=2)
+  points_custom(POW_LOB_short[1,], 3:0, shape=my_shape1, col=black(255), cex=1.5)
+  points(POW_LLB_short[1,], 3:0+0.09, pch=16, col=orange(255), cex=1.5)
+  points(POW_LTB_short[1,], 3:0+0.03, pch=16, col=magenta(255), cex=1.5)
+  # points(POW_LT4B_short[1,], 3:0, pch=16, col="blue", cex=1.5)
+  points(POW_LT6B_short[1,], 3:0-0.03, pch=16, col=teal(), cex=1.5)
+  # points(POW_LT8B_short[1,], 3:0-0.03, pch=16, col="green", cex=1.5)
+  # points(POW_LT5B_short[1,], 3:0, pch=16, col="purple", cex=1.5)
+  points(POW_LSB_short[1,], 3:0-0.09, pch=16, col=grey(255), cex=1.5)
+  
+  
+  # title(ylab="Anisotropy a", line=1.25, cex.lab=1.1)
+  title(main =TeX("$W=[-0.5, 0.5]^2$"), line=0.5, cex.main=1.5)
+  axis(2, at=c(3,2,1,0), labels=c("1", "0.8", "0.6", "0.4"),
+       pos=-0.03, las=2)
+  axis(1, at=c(0,0.05,0.2,0.4,0.6,0.8,1), labels=c("0", TeX("$\\alpha^{(T)}$"), "0.2", "0.4", "0.6", "0.8", "1"))
+  
+  par(mar=c(1,2.25,1.5,1))
+  plot.new()
+  title(ylab=TeX("$K_{cyl,\\alpha, \\zeta}$"), line=0.6, cex.lab=1.4)
+  title(ylab="Anisotropy a", line=-0.7, cex.lab=1.25)
+  
+  
+  
+  plot(c(0,1), c(-0.25,3.25), type="n", yaxt="n", xaxt="n", frame=FALSE, xlab="", ylab="", main="")
+  lines(c(0.05,0.05), c(-0.25,3.25), col="grey", lty=1, lwd=2)
+  lines(c(0.2,0.2), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.4,0.4), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.6,0.6), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.8,0.8), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(1,1), c(-0.25,3.25), col="grey", lty=2)
+  points_custom(POW_LOS_short[2,], 3:0, shape=my_shape1, col=black(255), cex=1.5)
+  points(POW_LLS_short[2,], 3:0+0.09, pch=16, col=orange(255), cex=1.5)
+  points(POW_LTS_short[2,], 3:0+0.03, pch=16, col=magenta(255), cex=1.5)
+  # points(POW_LT2S_short[2,], 3:0, pch=16, col="blue", cex=1.5)
+  # points(POW_LT3S_short[2,], 3:0-0.03, pch=16, col="purple", cex=1.5)
+  # points(POW_LT4S_short[2,], 3:0, pch=16, col="green", cex=1.5)
+  points(POW_LT5S_short[2,], 3:0-0.03, pch=16, col=teal(255), cex=1.5) # BEST
+  points(POW_LSS_short[2,], 3:0-0.09, pch=16, col=grey(255), cex=1.5)
+  
+  
+  # title(ylab="Anisotropy a", line=1.25, cex.lab=1.1)
+  axis(2, at=c(3,2,1,0), labels=c("1", "0.8", "0.6", "0.4"),
+       pos=-0.03, las=2)
+  axis(1, at=c(0,0.05,0.2,0.4,0.6,0.8,1), labels=c("0", TeX("$\\alpha^{(T)}$"), "0.2", "0.4", "0.6", "0.8", "1"))
+  
+  plot(c(0,1), c(-0.25,3.25), type="n", yaxt="n", xaxt="n", frame=FALSE, xlab="", ylab="", main="")
+  lines(c(0.05,0.05), c(-0.25,3.25), col="grey", lty=1, lwd=2)
+  lines(c(0.2,0.2), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.4,0.4), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.6,0.6), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.8,0.8), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(1,1), c(-0.25,3.25), col="grey", lty=2)
+  points_custom(POW_LOB_short[2,], 3:0, shape=my_shape1, col=black(255), cex=1.5)
+  points(POW_LLB_short[2,], 3:0+0.09, pch=16, col=orange(255), cex=1.5)
+  points(POW_LTB_short[2,], 3:0+0.03, pch=16, col=magenta(255), cex=1.5)
+  # points(POW_LT8B_short[2,], 3:0, pch=16, col="blue", cex=1.5)
+  points(POW_LT6B_short[2,], 3:0, pch=16, col=teal(255), cex=1.5)
+  # points(POW_LT4B_short[2,], 3:0-0.03, pch=16, col="green", cex=1.5)
+  # points(POW_LT5B_short[2,], 3:0, pch=16, col="purple", cex=1.5) # BEST
+  points(POW_LSB_short[2,], 3:0-0.09, pch=16, col=grey(255), cex=1.5)
+  
+  
+  # title(ylab="Anisotropy a", line=1.25, cex.lab=1.1)
+  axis(2, at=c(3,2,1,0), labels=c("1", "0.8", "0.6", "0.4"),
+       pos=-0.03, las=2)
+  axis(1, at=c(0,0.05,0.2,0.4,0.6,0.8,1), labels=c("0", TeX("$\\alpha^{(T)}$"), "0.2", "0.4", "0.6", "0.8", "1"))
+  
+  
+  
+  plot.new()
+  plot.new()
+  title(xlab="Rejection rate", line=-1, cex.lab=1.25)
+  plot.new()
+  title(xlab="Rejection rate", line=-1, cex.lab=1.25)
+  
+  
+  par(mar=c(0,2.25,0,1))
+  plot.new()
+  
+  l = 0.18
+  legend(x=-0.03+l, y=1, c("Oracle",  "LGCP", "Thomas", "Tiling", "Stoch. rec."), pch=c(NA, 16,16,16,16), pt.cex=1.5, 
+         col=c(NA, orange(255),  magenta(255), teal(255), grey(255)), ncol=5, cex=1.5)
+  points_custom(-0.011+l, 0.55, shape=my_shape1, col=black(255), cex=1.5)
+  
+}
+
 
 # GIBBS
 
-GIBBS_B <- read.csv("POW_GB.csv")
-GIBBS_S <- read.csv("POW_GS.csv")
+GIBBS_B <- read.csv("C:\\Users\\jjp22\\OneDrive - Imperial College London\\Desktop\\PhD\\Anisotropy testing in SPP\\BIG_SIM\\POW_GB.csv")
+GIBBS_S <- read.csv("C:\\Users\\jjp22\\OneDrive - Imperial College London\\Desktop\\PhD\\Anisotropy testing in SPP\\BIG_SIM\\POW_GS.csv")
 POW_GOS <- GIBBS_S[1:3,-1]
 POW_GSS <- GIBBS_S[4:6,-1]
 POW_GT2S <- GIBBS_S[7:9,-1]
 POW_GT3S <- GIBBS_S[10:12,-1]
 POW_GT4S <- GIBBS_S[13:15,-1]
-POW_GT5S <- GIBBS_S[10:18,-1]
+POW_GT5S <- GIBBS_S[16:18,-1]
 POW_GSRS <- GIBBS_S[19:21,-1]
 
 POW_GOB <- GIBBS_B[1:3,-1]
@@ -1359,6 +1711,25 @@ POW_GT5B <- GIBBS_B[10:12,-1]
 POW_GT6B <- GIBBS_B[13:15,-1]
 POW_GT8B <- GIBBS_B[16:18,-1]
 POW_GSRB <- GIBBS_B[19:21,-1]
+
+GIBBS_B_short <- read.csv("POW_GB_short.csv")
+GIBBS_S_short <- read.csv("POW_GS_short.csv")
+POW_GOS_short <- GIBBS_S_short[1:2,-1]
+POW_GSS_short <- GIBBS_S_short[3:4,-1]
+POW_GT2S_short <- GIBBS_S_short[5:6,-1]
+POW_GT3S_short <- GIBBS_S_short[7:8,-1]
+POW_GT4S_short <- GIBBS_S_short[9:10,-1]
+POW_GT5S_short <- GIBBS_S_short[11:12,-1]
+POW_GSRS_short <- GIBBS_S_short[13:14,-1]
+
+POW_GOB_short <- GIBBS_B_short[1:2,-1]
+POW_GSB_short <- GIBBS_B_short[3:4,-1]
+POW_GT4B_short <- GIBBS_B_short[5:6,-1]
+POW_GT5B_short <- GIBBS_B_short[7:8,-1]
+POW_GT6B_short <- GIBBS_B_short[9:10,-1]
+POW_GT8B_short <- GIBBS_B_short[11:12,-1]
+POW_GSRB_short <- GIBBS_B_short[13:14,-1]
+
 
 {
   # layout(matrix(c(1,2,3,4,5,6), ncol=1, byrow=FAGSRE), heights=c(3,3,3,3,3, 2))
@@ -1382,10 +1753,10 @@ POW_GSRB <- GIBBS_B[19:21,-1]
   lines(c(1,1), c(-0.25,3.25), col="grey", lty=2)
   points_custom(POW_GOS[1,], 3:0, shape=my_shape1, col=black(255), cex=1.5)
   points(POW_GSS[1,], 3:0+0.03, pch=16, col=magenta(255), cex=1.5)
-  points(POW_GT2S[1,], 3:0, pch=16, col=teal(255), cex=1.5)
-  # points(POW_GT3S[1,], 3:0, pch=16, col=cyan(255), cex=1.5)
-  # points(POW_GT4S[1,], 3:0, pch=16, col=teal(255), cex=1.5)
-  # points(POW_GT5S[1,], 3:0-0.03, pch=16, col=teal(), cex=1.5) # BEST
+  points(POW_GT2S[1,], 3:0-0.03, pch=16, col=teal(255), cex=1.5)
+  # points(POW_GT3S[1,], 3:0, pch=16, col="green", cex=1.5)
+  # points(POW_GT4S[1,], 3:0, pch=16, col="blue", cex=1.5)
+  # points(POW_GT5S[1,], 3:0-0.03, pch=16, col="purple", cex=1.5) # BEST
   points(POW_GSRS[1,], 3:0-0.09, pch=16, col=grey(255), cex=1.5)
   
   
@@ -1404,10 +1775,10 @@ POW_GSRB <- GIBBS_B[19:21,-1]
   lines(c(1,1), c(-0.25,3.25), col="grey", lty=2)
   points_custom(POW_GOB[1,], 3:0, shape=my_shape1, col=black(255), cex=1.5)
   points(POW_GSB[1,], 3:0+0.03, pch=16, col=magenta(255), cex=1.5)
-  points(POW_GT4B[1,], 3:0, pch=16, col=teal(255), cex=1.5)
-  # points(POW_GT6B[1,], 3:0, pch=16, col=cyan(255), cex=1.5)
+  # points(POW_GT4B[1,], 3:0, pch=16, col=teal(255), cex=1.5)
+  points(POW_GT6B[1,], 3:0-0.03, pch=16, col=teal(255), cex=1.5)
   # points(POW_GT8B[1,], 3:0-0.03, pch=16, col=teal(255), cex=1.5)
-  # points(POW_GT5B[1,], 3:0, pch=16, col=teal(), cex=1.5) # BEST
+  # points(POW_GT5B[1,], 3:0, pch=16, col=teal(), cex=1.5)
   points(POW_GSRB[1,], 3:0-0.09, pch=16, col=grey(255), cex=1.5)
   
   
@@ -1482,9 +1853,9 @@ POW_GSRB <- GIBBS_B[19:21,-1]
   lines(c(1,1), c(-0.25,3.25), col="grey", lty=2)
   points_custom(POW_GOS[3,], 3:0, shape=my_shape1, col=black(255), cex=1.5)
   points(POW_GSS[3,], 3:0+0.03, pch=16, col=magenta(255), cex=1.5)
-  # points(POW_GT2S[3,], 3:0, pch=16, col=blue(255), cex=1.5)
-  # points(POW_GT3S[3,], 3:0, pch=16, col=cyan(255), cex=1.5)
-  # points(POW_GT4S[3,], 3:0, pch=16, col=teal(255), cex=1.5)
+  # points(POW_GT2S[3,], 3:0, pch=16, col="blue", cex=1.5)
+  # points(POW_GT3S[3,], 3:0, pch=16, col="green", cex=1.5)
+  # points(POW_GT4S[3,], 3:0, pch=16, col="purple", cex=1.5)
   points(POW_GT5S[3,], 3:0-0.03, pch=16, col=teal(), cex=1.5) # BEST
   points(POW_GSRS[3,], 3:0-0.09, pch=16, col=grey(255), cex=1.5)
   
@@ -1525,18 +1896,145 @@ POW_GSRB <- GIBBS_B[19:21,-1]
   par(mar=c(0,2.25,0,1))
   plot.new()
   
-  l = 0.2375
-  legend(x=-0.03+l, y=1, c("Oracle",  "MC w/ Strauss", "Tiling", "Stoch. rec."), pch=c(NA, 16,16,16), pt.cex=1.5, 
+  l = 0.26
+  legend(x=-0.03+l, y=1, c("Oracle",  "Strauss", "Tiling", "Stoch. rec."), pch=c(NA, 16,16,16), pt.cex=1.5, 
          col=c(NA, magenta(255), teal(255), grey(255)), ncol=4, cex=1.5)
-  points_custom(-0.011+l, 0.66, shape=my_shape1, col=black(255), cex=1.5)
+  points_custom(-0.011+l, 0.55, shape=my_shape1, col=black(255), cex=1.5)
+  
+}
+
+{
+  # layout(matrix(c(1,2,3,4,5,6), ncol=1, byrow=FAGSRE), heights=c(3,3,3,3,3, 2))
+  layout(matrix(c(1:10, 10, 10), ncol=3, byrow=TRUE), heights=c(5,5,1,1), widths = c(1, 7,7))
+  par(mar=c(1,2.25,1.5,1))
+  
+  
+  par(mar=c(1,2.25,1.5,1))
+  plot.new()
+  title(ylab=TeX("$G_{loc,\\alpha, \\epsilon}$"), line=0.6, cex.lab=1.4)
+  title(ylab="Anisotropy a", line=-0.7, cex.lab=1.25)
+  
+  
+  
+  plot(c(0,1), c(-0.25,3.25), type="n", yaxt="n", xaxt="n", frame=FALSE, xlab="", ylab="", main="")
+  lines(c(0.05,0.05), c(-0.25,3.25), col="grey", lty=1, lwd=2)
+  lines(c(0.2,0.2), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.4,0.4), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.6,0.6), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.8,0.8), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(1,1), c(-0.25,3.25), col="grey", lty=2)
+  points_custom(POW_GOS_short[1,], 3:0, shape=my_shape1, col=black(255), cex=1.5)
+  points(POW_GSS_short[1,], 3:0+0.03, pch=16, col=magenta(255), cex=1.5)
+  points(POW_GT2S_short[1,], 3:0-0.03, pch=16, col=teal(255), cex=1.5)
+  # points(POW_GT3S_short[1,], 3:0, pch=16, col="green", cex=1.5)
+  # points(POW_GT4S_short[1,], 3:0, pch=16, col="blue", cex=1.5)
+  # points(POW_GT5S_short[1,], 3:0-0.03, pch=16, col="purple", cex=1.5) # BEST
+  points(POW_GSRS_short[1,], 3:0-0.09, pch=16, col=grey(255), cex=1.5)
+  
+  
+  # title(ylab="Anisotropy a", line=1.25, cex.lab=1.1)
+  title(main =TeX("$W=[-0.25, 0.25]^2$"), line=0.5, cex.main=1.5)
+  axis(2, at=c(3,2,1,0), labels=c("1", "0.8", "0.6", "0.4"),
+       pos=-0.03, las=2)
+  axis(1, at=c(0,0.05,0.2,0.4,0.6,0.8,1), labels=c("0", TeX("$\\alpha^{(T)}$"), "0.2", "0.4", "0.6", "0.8", "1"))
+  
+  plot(c(0,1), c(-0.25,3.25), type="n", yaxt="n", xaxt="n", frame=FALSE, xlab="", ylab="", main="")
+  lines(c(0.05,0.05), c(-0.25,3.25), col="grey", lty=1, lwd=2)
+  lines(c(0.2,0.2), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.4,0.4), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.6,0.6), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.8,0.8), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(1,1), c(-0.25,3.25), col="grey", lty=2)
+  points_custom(POW_GOB_short[1,], 3:0, shape=my_shape1, col=black(255), cex=1.5)
+  points(POW_GSB_short[1,], 3:0+0.03, pch=16, col=magenta(255), cex=1.5)
+  points(POW_GT4B_short[1,], 3:0-0.03, pch=16, col=teal(), cex=1.5)
+  # points(POW_GT6B_short[1,], 3:0, pch=16, col=teal(255), cex=1.5)
+  # points(POW_GT8B_short[1,], 3:0-0.03, pch=16, col="green", cex=1.5)
+  # points(POW_GT5B_short[1,], 3:0, pch=16, col="purple", cex=1.5) # BEST
+  points(POW_GSRB_short[1,], 3:0-0.09, pch=16, col=grey(255), cex=1.5)
+  
+  
+  # title(ylab="Anisotropy a", line=1.25, cex.lab=1.1)
+  title(main =TeX("$W=[-0.5, 0.5]^2$"), line=0.5, cex.main=1.5)
+  axis(2, at=c(3,2,1,0), labels=c("1", "0.8", "0.6", "0.4"),
+       pos=-0.03, las=2)
+  axis(1, at=c(0,0.05,0.2,0.4,0.6,0.8,1), labels=c("0", TeX("$\\alpha^{(T)}$"), "0.2", "0.4", "0.6", "0.8", "1"))
+  
+  par(mar=c(1,2.25,1.5,1))
+  plot.new()
+  title(ylab=TeX("$K_{cyl,\\alpha, \\zeta}$"), line=0.6, cex.lab=1.4)
+  title(ylab="Anisotropy a", line=-0.7, cex.lab=1.25)
+  
+  
+  
+  plot(c(0,1), c(-0.25,3.25), type="n", yaxt="n", xaxt="n", frame=FALSE, xlab="", ylab="", main="")
+  lines(c(0.05,0.05), c(-0.25,3.25), col="grey", lty=1, lwd=2)
+  lines(c(0.2,0.2), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.4,0.4), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.6,0.6), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.8,0.8), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(1,1), c(-0.25,3.25), col="grey", lty=2)
+  points_custom(POW_GOS_short[2,], 3:0, shape=my_shape1, col=black(255), cex=1.5)
+  points(POW_GSS_short[2,], 3:0+0.03, pch=16, col=magenta(255), cex=1.5)
+  points(POW_GT2S_short[2,], 3:0-0.03, pch=16, col=teal(), cex=1.5)
+  # points(POW_GT3S_short[2,], 3:0-0.03, pch=16, col=teal(255), cex=1.5)
+  # points(POW_GT4S_short[2,], 3:0, pch=16, col="green", cex=1.5)
+  # points(POW_GT5S_short[2,], 3:0, pch=16, col="purple", cex=1.5) # BEST
+  points(POW_GSRS_short[2,], 3:0-0.09, pch=16, col=grey(255), cex=1.5)
+  
+  
+  # title(ylab="Anisotropy a", line=1.25, cex.lab=1.1)
+  axis(2, at=c(3,2,1,0), labels=c("1", "0.8", "0.6", "0.4"),
+       pos=-0.03, las=2)
+  axis(1, at=c(0,0.05,0.2,0.4,0.6,0.8,1), labels=c("0", TeX("$\\alpha^{(T)}$"), "0.2", "0.4", "0.6", "0.8", "1"))
+  
+  plot(c(0,1), c(-0.25,3.25), type="n", yaxt="n", xaxt="n", frame=FALSE, xlab="", ylab="", main="")
+  lines(c(0.05,0.05), c(-0.25,3.25), col="grey", lty=1, lwd=2)
+  lines(c(0.2,0.2), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.4,0.4), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.6,0.6), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.8,0.8), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(1,1), c(-0.25,3.25), col="grey", lty=2)
+  points_custom(POW_GOB_short[2,], 3:0, shape=my_shape1, col=black(255), cex=1.5)
+  points(POW_GSB_short[2,], 3:0+0.03, pch=16, col=magenta(255), cex=1.5)
+  points(POW_GT8B_short[2,], 3:0, pch=16, col=teal(255), cex=1.5)
+  # points(POW_GT6B_short[2,], 3:0, pch=16, col="blue", cex=1.5)
+  # points(POW_GT4B_short[2,], 3:0-0.03, pch=16, col="green", cex=1.5)
+  # points(POW_GT5B_short[2,], 3:0, pch=16, col="purple", cex=1.5) # BEST
+  points(POW_GSRB_short[2,], 3:0-0.09, pch=16, col=grey(255), cex=1.5)
+  
+  
+  # title(ylab="Anisotropy a", line=1.25, cex.lab=1.1)
+  axis(2, at=c(3,2,1,0), labels=c("1", "0.8", "0.6", "0.4"),
+       pos=-0.03, las=2)
+  axis(1, at=c(0,0.05,0.2,0.4,0.6,0.8,1), labels=c("0", TeX("$\\alpha^{(T)}$"), "0.2", "0.4", "0.6", "0.8", "1"))
+  
+  
+  
+  # title(ylab="Anisotropy a", line=1.25, cex.lab=1.1)
+  axis(2, at=c(3,2,1,0), labels=c("1", "0.8", "0.6", "0.4"),
+       pos=-0.03, las=2)
+  axis(1, at=c(0,0.05,0.2,0.4,0.6,0.8,1), labels=c("0", TeX("$\\alpha^{(T)}$"), "0.2", "0.4", "0.6", "0.8", "1"))
+  
+  plot.new()
+  plot.new()
+  title(xlab="Rejection rate", line=-1, cex.lab=1.25)
+  plot.new()
+  title(xlab="Rejection rate", line=-1, cex.lab=1.25)
+  
+  
+  par(mar=c(0,2.25,0,1))
+  plot.new()
+  
+  l = 0.26
+  legend(x=-0.03+l, y=1, c("Oracle",  "Strauss", "Tiling", "Stoch. rec."), pch=c(NA, 16,16,16), pt.cex=1.5, 
+         col=c(NA, magenta(255), teal(255), grey(255)), ncol=4, cex=1.5)
+  points_custom(-0.011+l, 0.55, shape=my_shape1, col=black(255), cex=1.5)
   
 }
 
 
-
-
 # PLCP
-
 PLCP_B <- read.csv("POW_PB.csv")
 PLCP_S <- read.csv("POW_PS.csv")
 POW_POS <- PLCP_S[1:3,-1]
@@ -1544,7 +2042,7 @@ POW_PPS <- PLCP_S[4:6,-1]
 POW_PTS <- PLCP_S[7:9,-1]
 POW_PT2S <- PLCP_S[10:12,-1]
 POW_PT3S <- PLCP_S[13:15,-1]
-POW_PT4S <- PLCP_S[10:18,-1]
+POW_PT4S <- PLCP_S[16:18,-1]
 POW_PT5S <- PLCP_S[19:21,-1]
 POW_PSS <- PLCP_S[22:24,-1]
 
@@ -1556,6 +2054,28 @@ POW_PT5B <- PLCP_B[13:15,-1]
 POW_PT6B <- PLCP_B[16:18,-1]
 POW_PT8B <- PLCP_B[19:21,-1]
 POW_PSB <- PLCP_B[22:24,-1]
+
+
+
+PLCP_B_short <- read.csv("POW_PB_short.csv")
+PLCP_S_short <- read.csv("POW_PS_short.csv")
+POW_POS_short <- PLCP_S_short[1:2,-1]
+POW_PPS_short <- PLCP_S_short[3:4,-1]
+POW_PTS_short <- PLCP_S_short[5:6,-1]
+POW_PT2S_short <- PLCP_S_short[7:8,-1]
+POW_PT3S_short <- PLCP_S_short[9:10,-1]
+POW_PT4S_short <- PLCP_S_short[11:12,-1]
+POW_PT5S_short <- PLCP_S_short[13:14,-1]
+POW_PSS_short <- PLCP_S_short[15:16,-1]
+
+POW_POB_short <- PLCP_B_short[1:2,-1]
+POW_PPB_short <- PLCP_B_short[3:4,-1]
+POW_PTB_short <- PLCP_B_short[5:6,-1]
+POW_PT4B_short <- PLCP_B_short[7:8,-1]
+POW_PT5B_short <- PLCP_B_short[9:10,-1]
+POW_PT6B_short <- PLCP_B_short[11:12,-1]
+POW_PT8B_short <- PLCP_B_short[13:14,-1]
+POW_PSB_short <- PLCP_B_short[15:16,-1]
 
 {
   # layout(matrix(c(1,2,3,4,5,6), ncol=1, byrow=FALSE), heights=c(3,3,3,3,3, 2))
@@ -1604,9 +2124,9 @@ POW_PSB <- PLCP_B[22:24,-1]
   points(POW_PPB[1,], 3:0+0.09, pch=16, col=orange(255), cex=1.5)
   points(POW_PTB[1,], 3:0+0.03, pch=16, col=magenta(255), cex=1.5)
   # points(POW_PT4B[1,], 3:0, pch=16, col=blue(255), cex=1.5)
-  # points(POW_PT6B[1,], 3:0, pch=16, col=cyan(255), cex=1.5)
+  points(POW_PT6B[1,], 3:0-0.03, pch=16, col=teal(255), cex=1.5)
   # points(POW_PT8B[1,], 3:0-0.03, pch=16, col=teal(255), cex=1.5)
-  points(POW_PT5B[1,], 3:0, pch=16, col=teal(), cex=1.5) # BEST
+  # points(POW_PT5B[1,], 3:0-0.03, pch=16, col=teal(), cex=1.5)
   points(POW_PSB[1,], 3:0-0.09, pch=16, col=grey(255), cex=1.5)
   
   
@@ -1655,10 +2175,10 @@ POW_PSB <- PLCP_B[22:24,-1]
   points_custom(POW_POB[2,], 3:0, shape=my_shape1, col=black(255), cex=1.5)
   points(POW_PPB[2,], 3:0+0.09, pch=16, col=orange(255), cex=1.5)
   points(POW_PTB[2,], 3:0+0.03, pch=16, col=magenta(255), cex=1.5)
-  # points(POW_PT8B[2,], 3:0, pch=16, col=blue(255), cex=1.5)
-  # points(POW_PT6B[2,], 3:0, pch=16, col=cyan(255), cex=1.5)
-  points(POW_PT4B[2,], 3:0-0.03, pch=16, col=teal(255), cex=1.5)
-  # points(POW_PT5B[2,], 3:0, pch=16, col=teal(), cex=1.5) # BEST
+  # points(POW_PT8B[2,], 3:0, pch=16, col="blue", cex=1.5)
+  # points(POW_PT6B[2,], 3:0, pch=16, col="cyan", cex=1.5)
+  points(POW_PT4B[2,], 3:0-0.03, pch=16, col=teal(), cex=1.5)
+  # points(POW_PT5B[2,], 3:0, pch=16, col=teal(255), cex=1.5) # BEST
   points(POW_PSB[2,], 3:0-0.09, pch=16, col=grey(255), cex=1.5)
   
   
@@ -1685,7 +2205,7 @@ POW_PSB <- PLCP_B[22:24,-1]
   points(POW_PPS[3,], 3:0+0.09, pch=16, col=orange(255), cex=1.5)
   points(POW_PTS[3,], 3:0+0.03, pch=16, col=magenta(255), cex=1.5)
   # points(POW_PT2S[3,], 3:0, pch=16, col=blue(255), cex=1.5)
-  points(POW_PT3S[3,], 3:0, pch=16, col=teal(255), cex=1.5)
+  points(POW_PT3S[3,], 3:0-0.03, pch=16, col=teal(255), cex=1.5)
   # points(POW_PT4S[3,], 3:0, pch=16, col=teal(255), cex=1.5)
   # points(POW_PT5S[3,], 3:0-0.03, pch=16, col=teal(), cex=1.5) # BEST
   points(POW_PSS[3,], 3:0-0.09, pch=16, col=grey(255), cex=1.5)
@@ -1706,10 +2226,10 @@ POW_PSB <- PLCP_B[22:24,-1]
   points_custom(POW_POB[3,], 3:0, shape=my_shape1, col=black(255), cex=1.5)
   points(POW_PPB[3,], 3:0+0.09, pch=16, col=orange(255), cex=1.5)
   points(POW_PTB[3,], 3:0+0.03, pch=16, col=magenta(255), cex=1.5)
-  points(POW_PT4B[3,], 3:0, pch=16, col=teal(255), cex=1.5)
-  # points(POW_PT5B[3,], 3:0, pch=16, col=cyan(255), cex=1.5)
-  # points(POW_PT6B[3,], 3:0, pch=16, col=teal(255), cex=1.5)
-  # points(POW_PT8B[3,], 3:0-0.03, pch=16, col=teal(), cex=1.5) # BEST
+  points(POW_PT4B[3,], 3:0-0.03, pch=16, col=teal(255), cex=1.5)
+  # points(POW_PT5B[3,], 3:0, pch=16, col="blue", cex=1.5)
+  # points(POW_PT6B[3,], 3:0, pch=16, col="green", cex=1.5)
+  # points(POW_PT8B[3,], 3:0-0.03, pch=16, col="purple", cex=1.5) # BEST
   points(POW_PSB[3,], 3:0-0.09, pch=16, col=grey(255), cex=1.5)
   
   
@@ -1728,13 +2248,141 @@ POW_PSB <- PLCP_B[22:24,-1]
   par(mar=c(0,2.25,0,1))
   plot.new()
   
-  l = 0.12
-  legend(x=-0.03+l, y=1, c("Oracle",  "MC w/ PLCP", "MC w/ Thomas", "Tiling", "Stoch. rec."), pch=c(NA, 16,16,16,16), pt.cex=1.5, 
+  l = 0.18
+  legend(x=-0.03+l, y=1, c("Oracle",  "PLCP", "Thomas", "Tiling", "Stoch. rec."), pch=c(NA, 16,16,16,16), pt.cex=1.5, 
          col=c(NA, orange(255),  magenta(255), teal(255), grey(255)), ncol=5, cex=1.5)
-  points_custom(-0.011+l, 0.66, shape=my_shape1, col=black(255), cex=1.5)
+  points_custom(-0.011+l, 0.55, shape=my_shape1, col=black(255), cex=1.5)
   
 }
 
+{
+  # layout(matrix(c(1,2,3,4,5,6), ncol=1, byrow=FALSE), heights=c(3,3,3,3,3, 2))
+  layout(matrix(c(1:10, 10, 10), ncol=3, byrow=TRUE), heights=c(5,5,1,1), widths = c(1, 7,7))
+  par(mar=c(1,2.25,1.5,1))
+  
+  
+  par(mar=c(1,2.25,1.5,1))
+  plot.new()
+  title(ylab=TeX("$G_{loc,\\alpha, \\epsilon}$"), line=0.6, cex.lab=1.4)
+  title(ylab="Anisotropy a", line=-0.7, cex.lab=1.25)
+  
+  
+  
+  plot(c(0,1), c(-0.25,3.25), type="n", yaxt="n", xaxt="n", frame=FALSE, xlab="", ylab="", main="")
+  lines(c(0.05,0.05), c(-0.25,3.25), col="grey", lty=1, lwd=2)
+  lines(c(0.2,0.2), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.4,0.4), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.6,0.6), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.8,0.8), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(1,1), c(-0.25,3.25), col="grey", lty=2)
+  points_custom(POW_POS_short[1,], 3:0, shape=my_shape1, col=black(255), cex=1.5)
+  points(POW_PPS_short[1,], 3:0+0.09, pch=16, col=orange(255), cex=1.5)
+  points(POW_PTS_short[1,], 3:0+0.03, pch=16, col=magenta(255), cex=1.5)
+  # points(POW_PT2S_short[1,], 3:0, pch=16, col="blue", cex=1.5)
+  # points(POW_PT3S_short[1,], 3:0, pch=16, col="green", cex=1.5)
+  # points(POW_PT4S_short[1,], 3:0, pch=16, col="purple", cex=1.5)
+  points(POW_PT5S_short[1,], 3:0-0.03, pch=16, col=teal(), cex=1.5) # BEST
+  points(POW_PSS_short[1,], 3:0-0.09, pch=16, col=grey(255), cex=1.5)
+  
+  
+  # title(ylab="Anisotropy a", line=1.25, cex.lab=1.1)
+  title(main =TeX("$W=[-0.25, 0.25]^2$"), line=0.5, cex.main=1.5)
+  axis(2, at=c(3,2,1,0), labels=c("1", "0.8", "0.6", "0.4"),
+       pos=-0.03, las=2)
+  axis(1, at=c(0,0.05,0.2,0.4,0.6,0.8,1), labels=c("0", TeX("$\\alpha^{(T)}$"), "0.2", "0.4", "0.6", "0.8", "1"))
+  
+  plot(c(0,1), c(-0.25,3.25), type="n", yaxt="n", xaxt="n", frame=FALSE, xlab="", ylab="", main="")
+  lines(c(0.05,0.05), c(-0.25,3.25), col="grey", lty=1, lwd=2)
+  lines(c(0.2,0.2), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.4,0.4), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.6,0.6), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.8,0.8), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(1,1), c(-0.25,3.25), col="grey", lty=2)
+  points_custom(POW_POB_short[1,], 3:0, shape=my_shape1, col=black(255), cex=1.5)
+  points(POW_PPB_short[1,], 3:0+0.09, pch=16, col=orange(255), cex=1.5)
+  points(POW_PTB_short[1,], 3:0+0.03, pch=16, col=magenta(255), cex=1.5)
+  # points(POW_PT4B_short[1,], 3:0, pch=16, col="blue", cex=1.5)
+  # points(POW_PT6B_short[1,], 3:0, pch=16, col="green", cex=1.5)
+  points(POW_PT8B_short[1,], 3:0-0.03, pch=16, col=teal(), cex=1.5)
+  # points(POW_PT5B_short[1,], 3:0, pch=16, col="purple", cex=1.5) # BEST
+  points(POW_PSB_short[1,], 3:0-0.09, pch=16, col=grey(255), cex=1.5)
+  
+  
+  # title(ylab="Anisotropy a", line=1.25, cex.lab=1.1)
+  title(main =TeX("$W=[-0.5, 0.5]^2$"), line=0.5, cex.main=1.5)
+  axis(2, at=c(3,2,1,0), labels=c("1", "0.8", "0.6", "0.4"),
+       pos=-0.03, las=2)
+  axis(1, at=c(0,0.05,0.2,0.4,0.6,0.8,1), labels=c("0", TeX("$\\alpha^{(T)}$"), "0.2", "0.4", "0.6", "0.8", "1"))
+  
+  par(mar=c(1,2.25,1.5,1))
+  plot.new()
+  title(ylab=TeX("$K_{cyl,\\alpha, \\zeta}$"), line=0.6, cex.lab=1.4)
+  title(ylab="Anisotropy a", line=-0.7, cex.lab=1.25)
+  
+  
+  
+  plot(c(0,1), c(-0.25,3.25), type="n", yaxt="n", xaxt="n", frame=FALSE, xlab="", ylab="", main="")
+  lines(c(0.05,0.05), c(-0.25,3.25), col="grey", lty=1, lwd=2)
+  lines(c(0.2,0.2), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.4,0.4), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.6,0.6), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.8,0.8), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(1,1), c(-0.25,3.25), col="grey", lty=2)
+  points_custom(POW_POS_short[2,], 3:0, shape=my_shape1, col=black(255), cex=1.5)
+  points(POW_PPS_short[2,], 3:0+0.09, pch=16, col=orange(255), cex=1.5)
+  points(POW_PTS_short[2,], 3:0+0.03, pch=16, col=magenta(255), cex=1.5)
+  # points(POW_PT2S_short[2,], 3:0, pch=16, col="blue", cex=1.5)
+  # points(POW_PT3S_short[2,], 3:0-0.03, pch=16, col="green", cex=1.5)
+  points(POW_PT4S_short[2,], 3:0-0.03, pch=16, col=teal(255), cex=1.5)
+  # points(POW_PT5S_short[2,], 3:0, pch=16, col="purple", cex=1.5) # BEST
+  points(POW_PSS_short[2,], 3:0-0.09, pch=16, col=grey(255), cex=1.5)
+  
+  
+  # title(ylab="Anisotropy a", line=1.25, cex.lab=1.1)
+  axis(2, at=c(3,2,1,0), labels=c("1", "0.8", "0.6", "0.4"),
+       pos=-0.03, las=2)
+  axis(1, at=c(0,0.05,0.2,0.4,0.6,0.8,1), labels=c("0", TeX("$\\alpha^{(T)}$"), "0.2", "0.4", "0.6", "0.8", "1"))
+  
+  plot(c(0,1), c(-0.25,3.25), type="n", yaxt="n", xaxt="n", frame=FALSE, xlab="", ylab="", main="")
+  lines(c(0.05,0.05), c(-0.25,3.25), col="grey", lty=1, lwd=2)
+  lines(c(0.2,0.2), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.4,0.4), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.6,0.6), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.8,0.8), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(1,1), c(-0.25,3.25), col="grey", lty=2)
+  points_custom(POW_POB_short[2,], 3:0, shape=my_shape1, col=black(255), cex=1.5)
+  points(POW_PPB_short[2,], 3:0+0.09, pch=16, col=orange(255), cex=1.5)
+  points(POW_PTB_short[2,], 3:0+0.03, pch=16, col=magenta(255), cex=1.5)
+  # points(POW_PT8B_short[2,], 3:0, pch=16, col="blue", cex=1.5)
+  points(POW_PT6B_short[2,], 3:0-0.03, pch=16, col=teal(), cex=1.5)
+  # points(POW_PT4B_short[2,], 3:0-0.03, pch=16, col="green", cex=1.5)
+  # points(POW_PT5B_short[2,], 3:0, pch=16, col="purple", cex=1.5) # BEST
+  points(POW_PSB_short[2,], 3:0-0.09, pch=16, col=grey(255), cex=1.5)
+  
+  
+  # title(ylab="Anisotropy a", line=1.25, cex.lab=1.1)
+  axis(2, at=c(3,2,1,0), labels=c("1", "0.8", "0.6", "0.4"),
+       pos=-0.03, las=2)
+  axis(1, at=c(0,0.05,0.2,0.4,0.6,0.8,1), labels=c("0", TeX("$\\alpha^{(T)}$"), "0.2", "0.4", "0.6", "0.8", "1"))
+  
+ 
+ 
+  plot.new()
+  plot.new()
+  title(xlab="Rejection rate", line=-1, cex.lab=1.25)
+  plot.new()
+  title(xlab="Rejection rate", line=-1, cex.lab=1.25)
+  
+  
+  par(mar=c(0,2.25,0,1))
+  plot.new()
+  
+  l = 0.18
+  legend(x=-0.03+l, y=1, c("Oracle",  "PLCP", "Thomas", "Tiling", "Stoch. rec."), pch=c(NA, 16,16,16,16), pt.cex=1.5, 
+         col=c(NA, orange(255),  magenta(255), teal(255), grey(255)), ncol=5, cex=1.5)
+  points_custom(-0.011+l, 0.55, shape=my_shape1, col=black(255), cex=1.5)
+  
+}
 
 
 
@@ -1935,16 +2583,159 @@ POW_PSB <- PLCP_B[22:24,-1]
   par(mar=c(0,2.25,0,1))
   plot.new()
   
-  l = 0.18
+  l = 0.12
   legend(x=-0.03+l, y=1, c("",  "lowest  ", "LGCP    ", "second lowest    ", "Gibbs    ", "second highest    ", "PLCP    ", "highest  "), 
          pch=c(NA, 0, 16, 1, 16, 2, 16, 3), pt.cex=c(NA, 1.25, 1.5, 1.5, 1.5, 1.25, 1.5, 1.25),
          pt.lwd = c(NA, 2, NA, 2, NA, 2, NA, 2 ),
-         col=c(NA, black(), magenta(255), black(), teal(255), black(), orange(255), black()), ncol=4, cex=1.25)
+         col=c(NA, black(), magenta(255), black(), teal(255), black(), orange(255), black()), ncol=4, cex=1.5)
 
 }
 
 
-
+{
+  # layout(matrix(c(1,2,3,4,5,6), ncol=1, byrow=FALSE), heights=c(3,3,3,3,3, 2))
+  layout(matrix(c(1:10, 10, 10), ncol=3, byrow=TRUE), heights=c(5,5,1,1.5), widths = c(1, 7,7))
+  par(mar=c(1,2.25,1.5,1))
+  
+  
+  par(mar=c(1,2.25,1.5,1))
+  plot.new()
+  title(ylab=TeX("$G_{loc,\\alpha, \\epsilon}$"), line=0.6, cex.lab=1.4)
+  title(ylab="Anisotropy a", line=-0.7, cex.lab=1.25)
+  
+  
+  
+  plot(c(0,1), c(-0.25,3.25), type="n", yaxt="n", xaxt="n", frame=FALSE, xlab="", ylab="", main="")
+  lines(c(0.05,0.05), c(-0.25,3.25), col="grey", lty=1, lwd=2)
+  lines(c(0.2,0.2), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.4,0.4), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.6,0.6), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.8,0.8), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(1,1), c(-0.25,3.25), col="grey", lty=2)
+  points(POW_LT2S_short[1,], 3:0+0.17, pch=0, col=magenta(255), cex=1.25, lwd=2)
+  points(POW_LT3S_short[1,], 3:0+0.07, pch=1, col=magenta(255), cex=1.5, lwd=2)
+  points(POW_LT4S_short[1,], 3:0-0.03, pch=2, col=magenta(255), cex=1.25, lwd=2)
+  points(POW_LT5S_short[1,], 3:0-0.13, pch=3, col=magenta(), cex=1.25, lwd=2) # BEST
+  points(POW_GT2S_short[1,], 3:0+0.15, pch=0, col=teal(255), cex=1.25, lwd=2)
+  points(POW_GT3S_short[1,], 3:0+0.05, pch=1, col=teal(255), cex=1.5, lwd=2)
+  points(POW_GT4S_short[1,], 3:0-0.05, pch=2, col=teal(255), cex=1.25, lwd=2)
+  points(POW_GT5S_short[1,], 3:0-0.15, pch=3, col=teal(), cex=1.25, lwd=2) # BEST
+  points(POW_PT2S_short[1,], 3:0+0.13, pch=0, col=orange(255), cex=1.25, lwd=2)
+  points(POW_PT3S_short[1,], 3:0+0.03, pch=1, col=orange(255), cex=1.5, lwd=2)
+  points(POW_PT4S_short[1,], 3:0-0.07, pch=2, col=orange(255), cex=1.25, lwd=2)
+  points(POW_PT5S_short[1,], 3:0-0.17, pch=3, col=orange(), cex=1.25, lwd=2) # BEST
+  
+  # title(ylab="Anisotropy a", line=1.25, cex.lab=1.1)
+  title(main =TeX("$W=[-0.25, 0.25]^2$"), line=0.5, cex.main=1.5)
+  axis(2, at=c(3,2,1,0), labels=c("1", "0.8", "0.6", "0.4"),
+       pos=-0.03, las=2)
+  axis(1, at=c(0,0.05,0.2,0.4,0.6,0.8,1), labels=c("0", TeX("$\\alpha^{(T)}$"), "0.2", "0.4", "0.6", "0.8", "1"))
+  
+  
+  
+  plot(c(0,1), c(-0.25,3.25), type="n", yaxt="n", xaxt="n", frame=FALSE, xlab="", ylab="", main="")
+  lines(c(0.05,0.05), c(-0.25,3.25), col="grey", lty=1, lwd=2)
+  lines(c(0.2,0.2), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.4,0.4), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.6,0.6), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.8,0.8), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(1,1), c(-0.25,3.25), col="grey", lty=2)
+  points(POW_LT4B_short[1,], 3:0+0.17, pch=0, col=magenta(255), cex=1.25, lwd=2)
+  points(POW_LT5B_short[1,], 3:0+0.07, pch=1, col=magenta(255), cex=1.5, lwd=2)
+  points(POW_LT6B_short[1,], 3:0-0.03, pch=2, col=magenta(255), cex=1.25, lwd=2)
+  points(POW_LT8B_short[1,], 3:0-0.13, pch=3, col=magenta(), cex=1.25, lwd=2) # BEST
+  points(POW_GT4B_short[1,], 3:0+0.15, pch=0, col=teal(255), cex=1.25, lwd=2)
+  points(POW_GT5B_short[1,], 3:0+0.05, pch=1, col=teal(255), cex=1.5, lwd=2)
+  points(POW_GT6B_short[1,], 3:0-0.05, pch=2, col=teal(255), cex=1.25, lwd=2)
+  points(POW_GT8B_short[1,], 3:0-0.15, pch=3, col=teal(), cex=1.25, lwd=2) # BEST
+  points(POW_PT4B_short[1,], 3:0+0.13, pch=0, col=orange(255), cex=1.25, lwd=2)
+  points(POW_PT5B_short[1,], 3:0+0.03, pch=1, col=orange(255), cex=1.5, lwd=2)
+  points(POW_PT6B_short[1,], 3:0-0.07, pch=2, col=orange(255), cex=1.25, lwd=2)
+  points(POW_PT8B_short[1,], 3:0-0.17, pch=3, col=orange(), cex=1.25, lwd=2) 
+  
+  # title(ylab="Anisotropy a", line=1.25, cex.lab=1.1)
+  title(main =TeX("$W=[-0.5, 0.5]^2$"), line=0.5, cex.main=1.5)
+  axis(2, at=c(3,2,1,0), labels=c("1", "0.8", "0.6", "0.4"),
+       pos=-0.03, las=2)
+  axis(1, at=c(0,0.05,0.2,0.4,0.6,0.8,1), labels=c("0", TeX("$\\alpha^{(T)}$"), "0.2", "0.4", "0.6", "0.8", "1"))
+  
+  par(mar=c(1,2.25,1.5,1))
+  plot.new()
+  title(ylab=TeX("$K_{cyl,\\alpha, \\zeta}$"), line=0.6, cex.lab=1.4)
+  title(ylab="Anisotropy a", line=-0.7, cex.lab=1.25)
+  
+  
+  
+  plot(c(0,1), c(-0.25,3.25), type="n", yaxt="n", xaxt="n", frame=FALSE, xlab="", ylab="", main="")
+  lines(c(0.05,0.05), c(-0.25,3.25), col="grey", lty=1, lwd=2)
+  lines(c(0.2,0.2), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.4,0.4), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.6,0.6), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.8,0.8), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(1,1), c(-0.25,3.25), col="grey", lty=2)
+  points(POW_LT2S_short[2,], 3:0+0.17, pch=0, col=magenta(255), cex=1.25, lwd=2)
+  points(POW_LT3S_short[2,], 3:0+0.07, pch=1, col=magenta(255), cex=1.5, lwd=2)
+  points(POW_LT4S_short[2,], 3:0-0.03, pch=2, col=magenta(255), cex=1.25, lwd=2)
+  points(POW_LT5S_short[2,], 3:0-0.13, pch=3, col=magenta(), cex=1.25, lwd=2) # BEST
+  points(POW_GT2S_short[2,], 3:0+0.15, pch=0, col=teal(255), cex=1.25, lwd=2)
+  points(POW_GT3S_short[2,], 3:0+0.05, pch=1, col=teal(255), cex=1.5, lwd=2)
+  points(POW_GT4S_short[2,], 3:0-0.05, pch=2, col=teal(255), cex=1.25, lwd=2)
+  points(POW_GT5S_short[2,], 3:0-0.15, pch=3, col=teal(), cex=1.25, lwd=2) # BEST
+  points(POW_PT2S_short[2,], 3:0+0.13, pch=0, col=orange(255), cex=1.25, lwd=2)
+  points(POW_PT3S_short[2,], 3:0+0.03, pch=1, col=orange(255), cex=1.5, lwd=2)
+  points(POW_PT4S_short[2,], 3:0-0.07, pch=2, col=orange(255), cex=1.25, lwd=2)
+  points(POW_PT5S_short[2,], 3:0-0.15, pch=3, col=orange(), cex=1.25, lwd=2) # BEST
+  
+  # title(ylab="Anisotropy a", line=1.25, cex.lab=1.1)
+  axis(2, at=c(3,2,1,0), labels=c("1", "0.8", "0.6", "0.4"),
+       pos=-0.03, las=2)
+  axis(1, at=c(0,0.05,0.2,0.4,0.6,0.8,1), labels=c("0", TeX("$\\alpha^{(T)}$"), "0.2", "0.4", "0.6", "0.8", "1"))
+  
+  
+  plot(c(0,1), c(-0.25,3.25), type="n", yaxt="n", xaxt="n", frame=FALSE, xlab="", ylab="", main="")
+  lines(c(0.05,0.05), c(-0.25,3.25), col="grey", lty=1, lwd=2)
+  lines(c(0.2,0.2), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.4,0.4), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.6,0.6), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(0.8,0.8), c(-0.25,3.25), col="grey", lty=2)
+  lines(c(1,1), c(-0.25,3.25), col="grey", lty=2)
+  points(POW_LT4B_short[2,], 3:0+0.17, pch=0, col=magenta(255), cex=1.25, lwd=2)
+  points(POW_LT5B_short[2,], 3:0+0.07, pch=1, col=magenta(255), cex=1.5, lwd=2)
+  points(POW_LT6B_short[2,], 3:0-0.03, pch=2, col=magenta(255), cex=1.25, lwd=2)
+  points(POW_LT8B_short[2,], 3:0-0.13, pch=3, col=magenta(), cex=1.25, lwd=2) # BEST
+  points(POW_GT4B_short[2,], 3:0+0.15, pch=0, col=teal(255), cex=1.25, lwd=2)
+  points(POW_GT5B_short[2,], 3:0+0.05, pch=1, col=teal(255), cex=1.5, lwd=2)
+  points(POW_GT6B_short[2,], 3:0-0.05, pch=2, col=teal(255), cex=1.25, lwd=2)
+  points(POW_GT8B_short[2,], 3:0-0.15, pch=3, col=teal(), cex=1.25, lwd=2) # BEST
+  points(POW_PT4B_short[2,], 3:0+0.13, pch=0, col=orange(255), cex=1.25, lwd=2)
+  points(POW_PT5B_short[2,], 3:0+0.03, pch=1, col=orange(255), cex=1.5, lwd=2)
+  points(POW_PT6B_short[2,], 3:0-0.07, pch=2, col=orange(255), cex=1.25, lwd=2)
+  points(POW_PT8B_short[2,], 3:0-0.17, pch=3, col=orange(), cex=1.25, lwd=2) 
+  
+  # title(ylab="Anisotropy a", line=1.25, cex.lab=1.1)
+  axis(2, at=c(3,2,1,0), labels=c("1", "0.8", "0.6", "0.4"),
+       pos=-0.03, las=2)
+  axis(1, at=c(0,0.05,0.2,0.4,0.6,0.8,1), labels=c("0", TeX("$\\alpha^{(T)}$"), "0.2", "0.4", "0.6", "0.8", "1"))
+  
+ 
+ 
+  plot.new()
+  plot.new()
+  title(xlab="Rejection rate", line=-1, cex.lab=1.25)
+  plot.new()
+  title(xlab="Rejection rate", line=-1, cex.lab=1.25)
+  
+  
+  par(mar=c(0,2.25,0,1))
+  plot.new()
+  
+  l = 0.12
+  legend(x=-0.03+l, y=1, c("",  "lowest  ", "LGCP    ", "second lowest    ", "Gibbs    ", "second highest    ", "PLCP    ", "highest  "), 
+         pch=c(NA, 0, 16, 1, 16, 2, 16, 3), pt.cex=c(NA, 1.25, 1.5, 1.5, 1.5, 1.25, 1.5, 1.25),
+         pt.lwd = c(NA, 2, NA, 2, NA, 2, NA, 2 ),
+         col=c(NA, black(), magenta(255), black(), teal(255), black(), orange(255), black()), ncol=4, cex=1.5)
+  
+}
 
 ###############
 # Summary tables
@@ -1955,66 +2746,64 @@ POW_PSB <- PLCP_B[22:24,-1]
 
 
 allMCB3 <- rbind(POW_LLB[2,], POW_LTB[2,], POW_GSB[2,],POW_PPB[2,], POW_PTB[2,])
-allMCB3
+# allMCB3
 apply(allMCB3, 2, mean)
 apply(allMCB3, 2, function(x) mean(abs(x-0.05)))
-apply(allMCB3, 2, function(x) sum(abs(x[x>0.05]-0.05))/length(x))
+# apply(allMCB3, 2, function(x) sum(abs(x[x>0.05]-0.05))/length(x))
 
 
 
 
 allMCS3 <- rbind(POW_LLS[2,], POW_LTS[2,], POW_GSS[2,], POW_LLS[2,], POW_PTS[2,])
-allMCS3
+# allMCS3
 apply(allMCS3, 2, mean)
-
 apply(allMCS3, 2, function(x) mean(abs(x-0.05)))
-apply(allMCS3, 2, function(x) sum(abs(x[x>0.05]-0.05))/length(x))
+# apply(allMCS3, 2, function(x) sum(abs(x[x>0.05]-0.05))/length(x))
 
 
 allMCB4 <- rbind(POW_LTB[2,], POW_GSB[2,], POW_PTB[2,])
-allMCB4
+# allMCB4
 apply(allMCB4, 2, mean)
-
 apply(allMCB4, 2, function(x) mean(abs(x-0.05)))
-apply(allMCB4, 2, function(x) sum(abs(x[x>0.05]-0.05))/length(x))
+# apply(allMCB4, 2, function(x) sum(abs(x[x>0.05]-0.05))/length(x))
 
 
 
 allMCS4 <- rbind(POW_LTS[2,], POW_GSS[2,], POW_PTS[2,])
-allMCS4
+# allMCS4
 apply(allMCS4, 2, mean)
 apply(allMCS4, 2, function(x) mean(abs(x-0.05)))
-apply(allMCS4, 2, function(x) sum(abs(x[x>0.05]-0.05))/length(x))
+# apply(allMCS4, 2, function(x) sum(abs(x[x>0.05]-0.05))/length(x))
 
 
 
 aLLSB <- rbind(POW_LSB[2,],  POW_GSRB[2,], POW_PSB[2,])
-aLLSB
+# aLLSB
 apply(aLLSB, 2, mean)
 apply(aLLSB, 2, function(x) mean(abs(x-0.05)))
-apply(aLLSB, 2, function(x) sum(abs(x[x>0.05]-0.05))/length(x))
+# apply(aLLSB, 2, function(x) sum(abs(x[x>0.05]-0.05))/length(x))
 
 
 aLLSS <- rbind(POW_LSS[2,],  POW_GSRS[2,], POW_PSS[2,])
-aLLSS
+# aLLSS
 apply(aLLSS, 2, mean)
 apply(aLLSS, 2, function(x) mean(abs(x-0.05)))
-apply(aLLSS, 2, function(x) sum(abs(x[x>0.05]-0.05))/length(x))
+# apply(aLLSS, 2, function(x) sum(abs(x[x>0.05]-0.05))/length(x))
 
 
 #optimal
 allTOB <- rbind(POW_LT4B[2,],  POW_GT6B[2,], POW_PT4B[2,])
-allTOB
+# allTOB
 apply(allTOB, 2, mean)
 apply(allTOB, 2, function(x) mean(abs(x-0.05)))
-apply(allTOB, 2, function(x) sum(abs(x[x>0.05]-0.05))/length(x))
+# apply(allTOB, 2, function(x) sum(abs(x[x>0.05]-0.05))/length(x))
 
 
 allTOS <- rbind(POW_LT3S[2,],  POW_GT2S[2,], POW_PT3S[2,])
-allTOS
+# allTOS
 apply(allTOS, 2, mean)
 apply(allTOS, 2, function(x) mean(abs(x-0.05)))
-apply(allTOS, 2, function(x) sum(abs(x[x>0.05]-0.05))/length(x))
+# apply(allTOS, 2, function(x) sum(abs(x[x>0.05]-0.05))/length(x))
 
 
 
@@ -2024,64 +2813,62 @@ apply(allTOS, 2, function(x) sum(abs(x[x>0.05]-0.05))/length(x))
 
 
 allMCB3 <- rbind(POW_LLB[1,], POW_LTB[1,], POW_GSB[1,],POW_PPB[1,], POW_PTB[1,])
-allMCB3
+# allMCB3
 apply(allMCB3, 2, mean)
 apply(allMCB3, 2, function(x) mean(abs(x-0.05)))
-apply(allMCB3, 2, function(x) sum(abs(x[x>0.05]-0.05))/length(x))
+# apply(allMCB3, 2, function(x) sum(abs(x[x>0.05]-0.05))/length(x))
 
 
 
 allMCS3 <- rbind(POW_LLS[1,], POW_LTS[1,], POW_GSS[1,], POW_LLS[1,], POW_PTS[1,])
-allMCS3
+# allMCS3
 apply(allMCS3, 2, mean)
-
 apply(allMCS3, 2, function(x) mean(abs(x-0.05)))
-apply(allMCS3, 2, function(x) sum(abs(x[x>0.05]-0.05))/length(x))
+# apply(allMCS3, 2, function(x) sum(abs(x[x>0.05]-0.05))/length(x))
 
 
 allMCB4 <- rbind(POW_LTB[1,], POW_GSB[1,], POW_PTB[1,])
-allMCB4
+# allMCB4
 apply(allMCB4, 2, mean)
-
 apply(allMCB4, 2, function(x) mean(abs(x-0.05)))
-apply(allMCB4, 2, function(x) sum(abs(x[x>0.05]-0.05))/length(x))
+# apply(allMCB4, 2, function(x) sum(abs(x[x>0.05]-0.05))/length(x))
 
 
 
 allMCS4 <- rbind(POW_LTS[1,], POW_GSS[1,], POW_PTS[1,])
-allMCS4
+# allMCS4
 apply(allMCS4, 2, mean)
 apply(allMCS4, 2, function(x) mean(abs(x-0.05)))
-apply(allMCS4, 2, function(x) sum(abs(x[x>0.05]-0.05))/length(x))
+# apply(allMCS4, 2, function(x) sum(abs(x[x>0.05]-0.05))/length(x))
 
 
 aLLSB <- rbind(POW_LSB[1,],  POW_GSRB[1,], POW_PSB[1,])
-aLLSB
+# aLLSB
 apply(aLLSB, 2, mean)
 apply(aLLSB, 2, function(x) mean(abs(x-0.05)))
-apply(aLLSB, 2, function(x) sum(abs(x[x>0.05]-0.05))/length(x))
+# apply(aLLSB, 2, function(x) sum(abs(x[x>0.05]-0.05))/length(x))
 
 
 aLLSS <- rbind(POW_LSS[1,],  POW_GSRS[1,], POW_PSS[1,])
-aLLSS
+# aLLSS
 apply(aLLSS, 2, mean)
 apply(aLLSS, 2, function(x) mean(abs(x-0.05)))
-apply(aLLSS, 2, function(x) sum(abs(x[x>0.05]-0.05))/length(x))
+# apply(aLLSS, 2, function(x) sum(abs(x[x>0.05]-0.05))/length(x))
 
 
 #optimal
-allTOB <- rbind(POW_LT8B[1,],  POW_GT4B[1,], POW_PT5B[1,])
-allTOB
+allTOB <- rbind(POW_LT8B[1,],  POW_GT4B[1,], POW_PT6B[1,])
+# allTOB
 apply(allTOB, 2, mean)
 apply(allTOB, 2, function(x) mean(abs(x-0.05)))
-apply(allTOB, 2, function(x) sum(abs(x[x>0.05]-0.05))/length(x))
+# apply(allTOB, 2, function(x) sum(abs(x[x>0.05]-0.05))/length(x))
 # 
 # 
 allTOS <- rbind(POW_LT5S[1,],  POW_GT2S[1,], POW_PT5S[1,])
-allTOS
+# allTOS
 apply(allTOS, 2, mean)
 apply(allTOS, 2, function(x) mean(abs(x-0.05)))
-apply(allTOS, 2, function(x) sum(abs(x[x>0.05]-0.05))/length(x))
+# apply(allTOS, 2, function(x) sum(abs(x[x>0.05]-0.05))/length(x))
 
 
 
@@ -2093,7 +2880,6 @@ apply(allTOS, 2, function(x) sum(abs(x[x>0.05]-0.05))/length(x))
 
 ############
 # Ambrosia
-
 
 data <- read.table("doi_10.5063_AA_connolly.206.1-DATA.data", header = TRUE)
 uq <- unique(data[,1])
@@ -2107,9 +2893,9 @@ Ambrosia <-list(pattern=cbind(as.numeric(data[,2])-50, as.numeric(data[,3])-50),
 
 
 estLGCP <- infer.LGCP(Ambrosia, model)
-sigma_sq_sample <- read.csv("MCMC\\sigma_sq_sample.csv")[,-1]
-alpha_sample <- read.csv("MCMC\\alpha_sample.csv")[,-1]
-rho_L_sample <- read.csv("MCMC\\rho_L_sample.csv")[,-1]
+sigma_sq_sample <- read.csv("sigma_sq_sample.csv")[,-1]
+alpha_sample <- read.csv("alpha_sample.csv")[,-1]
+rho_L_sample <- read.csv("rho_L_sample.csv")[,-1]
 sigma_sqs <- sigma_sq_sample[6501:12501]
 alphas <- alpha_sample[6501:12501]
 rho_Ls <- rho_L_sample[6501:12501]
@@ -2118,35 +2904,33 @@ index <- sample(1:6000, 1)
 
 
 {
-set.seed(75)
-layout(matrix(c(1,2,3,3,4,4,5,6,7,7,8,8,9,9,6,10,11,11,12,12,13), nrow=3, byrow=TRUE),widths = c(0.5, rep(2,6)))
+layout(matrix(c(1,2,2,3,3,4,4,5,6,6,7,7,8,8,5,9,10,10,11,11,12), nrow=3, byrow=TRUE), widths=c(1, rep(5,6)))
 
-par(mar=rep(0,4))
 plot.new()
-title(ylab="Monte Carlo (MC)", line=-3, cex.lab=1.5)
 par(mar=c(2,1,1,1))
-plot.new()
+plotSpatPat(Ambrosia,cex=0.3)
+title(xlab=TeX("Original pattern"), line=1, cex.lab=1.8)
+set.seed(75)
 plotSpatPat(rLGCPtransformed("exponential", var= estLGCP[1], scale=estLGCP[2], mu=estLGCP[3], xdim=c(-50,50), ydim=c(-50,50)), cex=0.3)
-title(xlab=TeX("LGCP"), line=1, cex.lab=1.5)
+title(xlab=TeX("Parametric: LGCP"), line=1, cex.lab=1.8)
 plotSpatPat(rDirLine(lineIntensity=rho_Ls[index], alongIntensity=alphas[index], theta=pi/6, xdim=c(-50, 50), ydim=c(-50,50), sigma=sqrt(sigma_sqs[index]), kappa=KofA(1)), cex=0.3)
-title(xlab=TeX("PLCP"), line=1, cex.lab=1.5)
-plot.new()
+title(xlab=TeX("Parametric: PLCP"), line=1, cex.lab=1.8)
 
 par(mar=rep(0,4))
 plot.new()
-title(ylab="Nonparametric: tiling", line=-2.75, cex.lab=1.5)
+title(ylab="Nonparametric: tiling", line=-1.5, cex.lab=1.8)
 par(mar=c(2,1,1,1))
 plotSpatPat(singleBoot(Ambrosia,sqrt.n=4), cex=0.3)
-title(xlab=TeX("$\\N_{tile}=16$"), line=1, cex.lab=1.5)
+title(xlab=TeX("$\\N_{tile}=16$"), line=1, cex.lab=1.8)
 plotSpatPat(singleBoot(Ambrosia,sqrt.n=5), cex=0.3)
-title(xlab=TeX("$\\N_{tile}=25$"), line=1, cex.lab=1.5)
+title(xlab=TeX("$\\N_{tile}=25$"), line=1, cex.lab=1.8)
 plotSpatPat(singleBoot(Ambrosia,sqrt.n=6), cex=0.3)
-title(xlab=TeX("$\\N_{tile}=36$"), line=1, cex.lab=1.5)
+title(xlab=TeX("$\\N_{tile}=36$"), line=1, cex.lab=1.8)
 plot.new()
 plotSpatPat(singleBoot(Ambrosia,sqrt.n=7), cex=0.3)
-title(xlab=TeX("$\\N_{tile}=49$"), line=1, cex.lab=1.5)
+title(xlab=TeX("$\\N_{tile}=49$"), line=1, cex.lab=1.8)
 plotSpatPat(singleBoot(Ambrosia,sqrt.n=8), cex=0.3)
-title(xlab=TeX("$\\N_{tile}=64$"), line=1, cex.lab=1.5)
+title(xlab=TeX("$\\N_{tile}=64$"), line=1, cex.lab=1.8)
 plot.new()
 
 
