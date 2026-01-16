@@ -1,4 +1,4 @@
-This repository contains code used in article "Isotropy testing in spatial point patterns: nonparametric versus parametric replication under misspecification" by J.J Pypkowski, A.M. Sykulski, and J.S. Martin (https://doi.org/10.48550/arXiv.2411.19633).
+This repository contains code used in article "Isotropy testing in spatial point patterns: nonparametric versus parametric replication under misspecification" by J.J Pypkowski, A.M. Sykulski, and J.S. Martin (https://doi.org/10.1016/j.spasta.2025.100898).
 
 Folder "functions" contains the most up-to-date versions of functions used in our study. Files in this folder also contian comments that help understand how the functions work. 
 
